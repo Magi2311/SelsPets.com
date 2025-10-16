@@ -1,0 +1,1629 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans Lepcha', sans-serif;
+    /*overflow-x: hidden;*/
+}
+.container{
+    max-width: 100%;
+}
+.header
+{
+    min-height: 100vh ;
+    width: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0,0,0,0.5)),url(https://kentdogwalker.co.uk/wp-content/uploads/2024/08/kent-dog-walker-professional-dog-walking-services-1024x585.webp);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+.section
+{
+    background-color: rgb(196, 196, 196);
+}
+/*------------------------Меню--------------------------------------*/
+
+nav{
+    display: flex;
+    /* padding: 2% 6%; */
+    padding-left: 2%;
+    padding-top: 0;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+
+nav img{
+    width: 200px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links{
+    flex: 1;
+    text-align: right;
+    padding-right: 8%;
+}
+.nav-links ul li
+{
+    list-style: none;
+    display: inline-block;
+    padding: 8px 12px;
+    position: relative;
+    color: aliceblue;
+}
+.nav-links ul li a{
+    box-sizing: content-box;
+    color: white;
+    text-decoration: none;
+    font-size: 26px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border-right: 0.3px solid #fff;
+    padding: 6px 10px 6px 0px;
+}
+
+.nav-links ul li a:not(:last-child) {
+    border-left: 0.3px solid #fff; 
+}
+
+.nav-container {
+    position: relative;
+}
+
+.hamburger {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+    padding: 10px;
+}
+ul li a:hover {
+    color:  rgb(245, 55, 87);
+    border-radius: 0%;
+}
+.text-box{
+    width: 90%;
+    color: rgb(252, 252, 252);
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+}
+.text-box h1{
+    font-size: 62px;
+    padding-top: 100px;
+}
+.text-box p{
+    margin: 10px 0 40px;
+    font-size: 18px;
+    color: aliceblue;
+    overflow: hidden;
+}
+.buttons{
+    display:flex;
+    gap: 2%;
+    justify-content: center;
+}
+.buttons a{
+    backdrop-filter: blur(5px);
+    background-color: rgba(245, 55, 87, 0.37);
+}
+.form survey-panel{
+    display: flex;
+    flex-direction: column;
+}
+.form survey-panel{
+    display: flex;
+    flex-direction: column;
+}
+/*------------------------------------------Снимка на акаунта-----------------------------------------------*/
+/* Основен стил за подменюто */
+.account-menu {
+    display: none; /* Скриваме менюто по подразбиране */
+    position: absolute;
+    top: 100%; /* Позиционираме го директно под изображението */
+    right: 0;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px 0;
+    width: 160px; /* Размер на подменюто */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Сянка за по-добър контраст */
+    z-index: 1000;
+    max-height: 300px; /* Максимална височина на подменюто */
+    overflow-y: auto; /* Показване на скрол, ако е нужно вътре в менюто */
+    margin-top: 5px;
+}
+
+/* Стил за елементите на менюто */
+.account-menu li {
+    padding: 12px 20px;
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+    text-align: center;
+    border-bottom: 1px solid #f2f2f2;
+    transition: background-color 0.3s ease;
+}
+
+/* Стил при ховър */
+.account-menu li:hover {
+    background-color: #f5f5f5; /* Лека сянка при ховър */
+    color: #007BFF; /* Син цвят при ховър */
+}
+
+/* Излишен скрол и малки иконки няма да се използват */
+.account-menu li:last-child {
+    border-bottom: none; /* Премахване на долната линия на последния елемент */
+}
+
+/* Когато менюто е видимо */
+.account-menu.show {
+    display: block;
+    display: contents;
+}
+
+
+/*----------------------------------Създаване на акаунт------------------------------------*/
+#account{
+    align-items: center;
+    display: none;
+}
+.form-box {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 600px;
+    text-align: center;
+    justify-self: anchor-center;
+    padding: 5px;
+}
+.form-box header {
+    font-size: 36px;
+    font-weight: bold;
+    color: floralwhite;
+}
+/*РЕГИСТРАЦИЯ*/
+.top{
+    margin-bottom: 18px;
+    border-bottom: 2px solid white;
+}
+.top a{
+    text-decoration: none;
+    color: rgb(245, 55, 87);
+    font-weight: bold;
+}
+.top span{
+    color: aliceblue;
+    font-size: larger;
+    margin-bottom: 20px;
+}
+.input-box {
+    position: relative;
+    margin-bottom: 15px;
+}
+.input-box input {
+    padding: 10px 15px;
+    padding-left: 45px;
+    border: none;
+    border-radius: 25px;
+    outline: none;
+    font-size: 18px;
+}
+.input-box i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #555;
+}
+/*.input-box input#postalCode{
+    line-height: 1.2;
+}*/
+.submit {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 25px;
+    background: rgb(245, 55, 87);
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.submit:hover {
+    background: rgb(245, 55, 87);
+}
+.two-form{
+    display: flex;
+}
+.two-col {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    font-size: 14px;
+    color: white;
+}
+.two-col a {
+    color: #ffcc00;
+    text-decoration: none;
+    
+}
+.bx{
+    padding-bottom: 14px;
+}
+.login-container, .registration-container {
+    transition: opacity 0.3s ease-in-out;
+    opacity: 1;
+}
+.two-form {
+    display: flex;
+    gap: 10px;
+}
+
+.two-form .input-box {
+    width: 50%;
+}
+
+.profile-pic {
+    position: relative;      /* Позволява на вътрешните елементи да са абсолютно позиционирани */
+    width: 150px;            
+    height: 150px;
+    border-radius: 50%;      /* Кръгла форма */
+    overflow: hidden;
+    align-self: center;
+    margin-bottom: 30px;
+  }
+
+  /* Скриваме file input, за да не се вижда */
+  .profile-pic input[type="file"] {
+    display: none;
+  }
+
+  /* Правим целия контейнер кликваем чрез label */
+  .profile-pic label {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    position: relative;      /* За да може overlay да се позиционира в label */
+  }
+
+  /* Снимката */
+  .profile-pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.3s ease-in-out;
+  }
+
+  /* Overlay (тъмният слой + иконката + текста) */
+  .upload-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Полупрозрачен черен фон */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    opacity: 0;                    /* Скрито по подразбиране */
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  /* Иконата */
+  .upload-overlay i {
+    font-size: 24px;
+    color: white;
+    margin-bottom: 5px;
+  }
+
+  /* Текстът */
+  .upload-overlay span {
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  /* При hover върху label показваме overlay */
+  .profile-pic label:hover .upload-overlay {
+    opacity: 1;
+  }
+
+  /* При hover върху label потъмняваме снимката */
+  .profile-pic label:hover img {
+    filter: brightness(50%);
+  }
+
+.regionColl1{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+.regionColl2{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+.regionAll{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: 600px;
+}
+
+
+
+/*WORK TIME*/
+
+.course{
+    width: 100%;
+    border-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+}
+.course p{
+    font-size: 24px;
+}
+.course h3{
+    font-size: 30px;
+}
+
+.hero
+{
+    display: inline-block;
+    text-decoration: none;
+    color: aliceblue;
+    border: 1px solid aliceblue;
+    padding: 12px 34px;
+    font-size: 22px;
+    background: transparent;
+    position: relative;
+    cursor: pointer;
+}
+.hero:hover{
+    border: 1px solid rgb(245, 55, 87);
+    background: rgb(245, 55, 87);
+    transition: 1s;
+}
+/* Основни стилове 
+.header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+} */
+
+/* Емотиконката (бургер меню) - скрита по подразбиране */
+#menu-icon {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+
+/*LOCATION*/
+
+.campus p{
+    font-size: 24px;
+}
+.campus h1{
+    font-size: 30px;
+}
+.campus{
+    width: 90%;
+    margin: auto;
+    text-align: center;
+    padding-top: 50px;
+    border-top: 3px solid black;
+    font-size: 24px;
+
+}
+.campus-col{
+    flex-basis: 32%;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+}
+.campus-col img
+{
+    width: 100%;
+    height: 350px;
+    display: block;
+}
+
+
+/*CONTACTS*/
+.course{
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    padding-top: 100px;
+}
+h1{
+    font-size: 36px;
+    font-weight: 600;
+}
+p{
+    color:  rgb(66, 51, 53);
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 22px;
+}
+.row{
+    margin-top: 5%;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+.course-col
+{
+    flex-basis: 31%;
+    background: rgb(233, 100, 122);
+    border-radius: 10px;
+    margin-bottom: 5%;
+    padding: 20px 12px;
+    box-sizing: border-box;
+    transition: 0.5s;
+        width: 100%;
+}
+h3{
+    text-align: center;
+    font-weight: 600;
+    margin: 30px 0;
+}
+.ad-item h3{
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #444;
+}
+.course-col:hover{
+    box-shadow: 0 0 20px 0px rgb(0,0,0,0.9);
+}
+
+.layer{
+    background:transparent;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: 0.5s;
+}
+.layer:hover{
+    background: rgba(0,0,0,0.6);
+}
+.layer h3{
+    width: 100%;
+    font-weight: 500;
+    color:aliceblue;
+    font-size: 26px;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    border:1px 0 black;
+    transition: 0.5s;
+}
+.layer:hover h3{
+    bottom: 49%;
+    opacity: 1;
+
+}
+
+
+/*OPINIONS*/
+
+.testmonials{
+    width:90%;
+    margin: auto;
+    padding-top: 100px;
+    text-align: center;
+    border-bottom: 3px solid black;
+    border-top: 3px solid black;
+    padding-bottom: 5%;
+}
+.testmonials-col{
+    flex-basis: 44%;
+    border-radius: 10px;
+    margin-bottom: 0.1%;
+    text-align: left;
+    background:#fff3f3;
+    padding: 25px;
+    cursor: pointer;
+    display: flex;
+}
+.testmonials p{
+    font-size: 24px;
+}
+.testmonials h1{
+    font-size: 30px;
+}
+.testmonials-col img{
+    height: 90px;
+    width: 100px;
+    margin-left: 10px;
+    margin-right: 20px;
+    border-radius: 80%;
+}
+.testmonials-col p{
+    padding: 0;
+    font-size: 14px;
+}
+.testmonials-col h3{
+    margin-top: 15px;
+    text-align: left;
+}
+.testmonials-col .fa{
+    color:#dad624
+}
+
+
+/*Contacts*/
+.call{
+    margin: 100px auto;
+    width: 90%;
+    background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url(../images/462581280_1247564516499883_3040140794491619874_n.jpg);
+    background-position: top;
+    background-position:center;
+    background-size: cover;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+    padding: 100px 0;
+    height: 250px;
+}
+.call h1{
+    color:aliceblue;
+    margin-bottom: 40px;
+    padding: 0;
+}
+.call p{
+    color:aliceblue;
+    margin-bottom: 40px;
+    padding: 0;
+}
+
+/*FOOTER*/
+
+.footer
+{
+    color: aliceblue;
+    background-image: linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1)),url(../images/462648328_1104961604401687_1183731768742544647_n.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: auto;
+    text-align: center;
+    padding: 20px 0;
+    height: auto;
+
+}
+.footer h4{
+    /* margin-bottom: 25px; */
+    /* margin-top: 20px; */
+    font-weight: 600;
+    font-size: 20px;
+}
+.footer p{
+    color: aliceblue;
+}
+
+/*Design on button*/
+.hero-u
+{
+    display: inline-block;
+    text-decoration: none;
+    color: rgb(1, 6, 10);
+    border: 1px solid rgb(3, 0, 1);
+    padding: 12px 34px;
+    font-size: 22px;
+    background: transparent;
+    position: relative;
+    cursor: pointer;
+}
+.hero-u:hover{
+    border: 1px solid rgb(245, 55, 87);
+    background: rgb(245, 55, 87);
+    color: aliceblue;
+    transition: 1s;
+}
+
+
+/*--------------------------------------Страница за домащни любимци ----------------------------------------------------------------------------*/
+.sub-header{          
+    width: 100%;
+    background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url( ../images/465730233_1141876927300827_6966184578435488549_n.png);
+    background-position: center;
+    background-size: cover;
+    text-align: center;
+    /*----padding: 100px 0;-----*/
+    height: 50vh;
+    position: relative;
+    color: aliceblue;
+    border-bottom: 2px solid white;
+    height: 35%;
+}
+.sub-header h1{
+    font-size: 60px;
+}
+.about-us{
+    width: 80%;
+    margin: auto;
+    padding-top: 80px;
+    padding-bottom: 50px;
+}
+.about-col{
+    flex-basis: 48%;
+    padding: 30px 2px;
+}
+.about-col img{
+    width: 100%;
+}
+.about-col h1{
+    padding-top: 0;
+}
+.about-col p{
+    padding: 15px 0 25px;
+}
+
+.hero-u
+{
+    display: inline-block;
+    text-decoration: none;
+    color: rgb(1, 6, 10);
+    border: 1px solid rgb(3, 0, 1);
+    padding: 12px 34px;
+    font-size: 22px;
+    background: transparent;
+    position: relative;
+    cursor: pointer;
+}
+.hero-u:hover{
+    border: 1px solid rgb(245, 55, 87);
+    background: rgb(245, 55, 87);
+    color: aliceblue;
+    transition: 1s;
+}
+.location{
+    width: 80%;
+    margin: auto;
+    padding: 80px 0;
+    border-bottom: 3px solid black;
+    border-top: 3px solid black;
+}
+.location iframe{
+    width: 100%;
+}
+
+.contact{
+    width: 80%;
+    height: auto;
+    margin: auto;
+    overflow: hidden;
+    margin-bottom: 30px;
+    align-items: center;
+}
+.text1{
+    display: flex;
+    grid:2px;
+}
+.contact-col{
+    flex-basis: 48%;
+    margin-bottom: 30px;
+    padding-top: 0;
+}
+.contact col{
+        margin-bottom: 0px;
+}
+.contact-col span , i{
+    font-size: 30px;
+
+}
+.contact-col div{
+    display: flex;
+    align-items: center;
+    margin-bottom: 60px;
+}
+.contact-col div .fa{
+    font-size: 28px;
+    color: #e05d7e;
+    margin: 10px;
+    margin-right: 30px;
+    
+}
+.contact-col div .fa {
+    font-size: 40px; /* Увеличете размера на иконките */
+    color: #e05d7e;
+    margin: 15px; /* Увеличете разстоянието около иконите */
+    margin-right: 40px; /* По-голямо разстояние между иконата и текста */
+}
+.contact-col button {
+    font-size: 18px; /* Увеличете размера на текста в бутоните */
+    padding: 15px 20px; /* Добавете повече вътрешни отстояния за уголемяване на бутоните */
+    border-radius: 8px; /* Меки ъгли за по-добър изглед (опционално) */
+    cursor: pointer; /* За по-добра интеракция */
+}
+.text1 h5 {
+    font-size: 22px; /* Увеличете заглавието */
+    font-weight: bold; /* Подчертайте текста, ако е нужно */
+}
+
+.text1 p {
+    font-size: 18px; /* Увеличете описателния текст */
+    margin: 5px 0; /* Разстояние между редовете */
+}
+.text1 {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Разстояние между иконите и текста */
+    margin-bottom: 20px;
+}
+
+.text1 i {
+    font-size: 50px; /* Увеличете размера на иконките */
+    color: #e05d7e; /* Цветът остава същият */
+}
+
+.question p{
+    font-size: xxx-large;
+    font-weight: bolder;
+    margin-bottom: 18%;
+    width: min-content;
+    overflow: visible;
+    line-height: normal;
+}
+.contact-col div p{
+    padding: 0;
+    font-size: 80px;
+
+}
+
+.contact-col div h5{
+    font-size: 30px;
+    margin-bottom: 5px;
+    color:#555050;
+    font-weight: 400;
+}
+.hero1
+{
+    display: inline-block;
+    text-decoration: none;
+    color: #333;
+    border: 1px solid #333;
+    padding: 12px 34px;
+    font-size: 22px;
+    background: transparent;
+    position: relative;
+    cursor: pointer;
+}
+.hero1:hover{
+    border: 1px solid rgb(245, 55, 87);
+    background: rgb(245, 55, 87);
+    transition: 1s;
+    color: aliceblue;
+}
+
+.contact-col input, .contact-col textarea{
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 17px;
+    outline: none;
+    border: 1px solid #333;
+    color:#8a8a8a
+}
+
+.column {
+    margin-bottom: 16px;
+    padding: 0 8px;
+    text-align: center;
+    
+}
+#pets-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+.card {
+    box-shadow: 5px 4px 5px 4px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    border: 1px solid black;
+}       
+.contact-col form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+}
+
+.contact-col form input, 
+.contact-col form textarea, 
+.contact-col form button {
+    width: 100%; /* За да запази същата ширина като текстовите полета */
+    /*max-width: 400px; */
+    margin: 10px 0; /* Разстояние между елементите */
+}
+.contact-col .button-group {
+    display: flex;
+    justify-content: center; 
+    gap: 10px; 
+    width: 100%; 
+}
+
+/*----------------------------------------------------- Секция с филтри ---------------------------------------------------*/
+.Filtri {
+    width: auto;
+    max-width: 300px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background: #d8d8d8;
+    height: 100%;
+}
+.filter-form{
+    position: fixed;
+    top: 20px; /* Разстояние от горната част на екрана */
+    left: 20px; /* Разстояние от лявата част на екрана */
+    width: 300px; /* Фиксирана ширина за формата */
+    z-index: 1000; /* Увери се, че стои над другите елементи */
+}
+
+
+.Filtri h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: #333;
+    border-bottom: 1px solid black;
+}
+
+.filter-group {
+    margin-bottom: 15px;
+}
+
+.filter-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: bold;
+}
+
+.filter-group input,
+.filter-group select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.filter-group input[type="checkbox"] {
+    width: auto;
+    margin-right: 5px;
+}
+
+.filter-group input[type="number"] {
+    width: 48%;
+    display: inline-block;
+}
+
+.filter-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.filter-group buttons{
+    display: flex;
+    gap: 4%
+}
+
+.filter-btn:hover {
+    background-color: #45a049;
+}
+#clear-filters {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+#clear-filters:hover {
+    background-color: #e63939;
+}
+.butoni{
+    display: flex;
+    gap:2%;
+}
+
+/* -----------------------------------------------------------------Общ стил за блока за животни -----------------------*/
+.pet-block {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    width:250px;
+    height: 370px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    align-items: center;
+    overflow-y: hidden;
+
+}
+.pet-block p{
+    line-height: 1.4p;
+    /*overflow-y: hidden;*/
+}
+
+/* Стил за снимката */
+.pet-image {
+    width: 200px;
+    height: 180px;
+    margin-top: 10px;
+    margin-bottom: 8px;
+    overflow-y: hidden;
+}
+
+/* Стил за заглавието (породата) */
+.breed-name {
+    font-size: 20px;
+    font-weight: bold;
+    overflow-y: hidden;
+    color: #333;
+}
+
+/* Различни стилове за породи */
+.different-breed {
+    font-family: "Georgia", serif;
+    color: #4A90E2; /* син цвят */
+    overflow-y: hidden;
+}
+
+.unique-breed {
+    font-family: "Courier New", monospace;
+    overflow-y: hidden;
+    color: #E94E77; /* розов цвят */
+}
+
+/* Стил за цената */
+.pet-price {
+    font-size: 16px;
+    color: #000000; /* зелен цвят */
+    margin: 5px 0;
+    font-weight: bold;
+}
+.ages{
+    display: flex;
+}
+
+/* Стил за местоположението */
+.pet-location {
+    font-size: 14px;
+    color: #777;
+    margin: 5px 0;
+    font-style: italic;
+}
+.All {
+    display: flex; /* Основният контейнер е flexbox */
+    flex-direction: row;
+    width: 100%;
+}
+
+/* ------------------------------------------------------------------Секция с домашни любимци */
+.Pets {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    gap: 10px;
+    margin: 20px;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+}
+.row1{
+    margin-top: 2%;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    justify-content: space-between;
+    
+}
+/* Стил за бутоните */
+.pet-block button {
+    background-color: #4CAF50; /* Зелен фон */
+    color: white; /* Бял текст */
+    border: none;
+    font-weight: bold;
+    padding: 8px 15px; 
+    margin: 5px; /* Разстояние между бутоните */
+    border-radius: 5px; /* Леко закръглени ръбове */
+    font-size: 14px; /* По-малък размер на шрифта */
+    cursor: pointer; /* Приемане на курсора като pointer */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Лека анимация за плавно преминаване */
+    overflow-y: hidden;
+}
+
+/* Ховър ефекти за бутоните */
+.pet-block button:hover {
+    background-color: #45a049; /* Променя се на по-тъмен зелен при ховър */
+    transform: scale(1.05); /* Леко уголемяване на бутона при ховър */
+}
+
+/* Стил за подреждане на бутоните хоризонтално */
+.butoni {
+    display: flex; /* Използваме flexbox за подреждане */
+    gap: 10px; /* Разстояние между бутоните */
+    justify-content: center; /* Центриране на бутоните */
+    overflow-y: hidden;
+}
+
+/* За самите колони с обяви (ако имате бутоните вътре в .pet-block) */
+.pet-block {
+    text-align: center; /* Центриране на съдържанието */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центриране на елементите */
+    overflow-y: hidden;
+}
+/*-------------------------------Регистрация------------------------------------------------------------------*/
+.registration{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    box-sizing: border-box;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+.login-box{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 440px;
+    height: 480px;
+    padding: 30px;   
+}
+.login-header{
+    text-align: center;
+    margin: 20px 0 40px 0;
+    border-radius: 5%;
+    border: 2px solid black;
+    padding: 10%;
+    background-color: #d8d8d8;
+}
+.login-header header{
+    color: #333;
+    font-size: 30px;
+    font-weight: 600;
+}
+.input-box .input-field{
+    width: 100%;
+    height: 60px;
+    font-size: 17px;
+    margin-bottom: 15px;
+    border-radius: 30px;
+    border: none;
+    box-shadow: 0px 5px 10px 1px rgb(0,0,0,0.0.05);
+    outline: none;
+    transition: .3s;
+    
+}
+::placeholder{
+    font-weight: 500;
+    color: #000000;
+}
+.input-field::focus{
+    display: flex;
+    justify-content:space-between;
+    margin-bottom: 40px;
+}
+.login{
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #555;
+
+}
+#check{
+    margin-right: 10px;
+}
+a{
+    text-decoration: none;
+}
+a::hover{
+    text-decoration: underline;
+}
+.login a{
+    color: #555;
+}
+.input-submit{
+    position: relative;
+}
+.input-button{
+    width: 100%;
+    height: 60px;
+    background: #222;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: .3s;
+}
+.input-submit label{
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    color: #00000060;
+    cursor: pointer;
+}
+.submit-button::hover{
+    background: #000000;
+    transform: scale(1.05,1);
+}
+.sign-up-link{
+    text-align: center;
+    font-size: 15px;
+    margin-top: 20px;
+}
+.sign-up-link a{
+    color: #000000;
+    font-weight: 600;
+}
+forgot-a{
+    display: flex;
+    flex-direction: row;
+}
+
+/*------------Akauntski dostup-----------------------------------------------------------------------------------*/
+
+.accountPic{
+    border-radius: 50%;
+}
+
+.accountPic img{
+    width: auto;
+    height: 80;
+    border-radius: inherit;
+}
+#navLinks{
+    display: flex;
+        justify-content: right;
+        margin-right: -100px;
+}
+
+/*------------Коригиране или добавяне на информация в акаунта ----------------------------------------------------*/
+.Information{
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.picProfile {
+    background-color: #000000;
+    border: 2px solid black;
+    height: 250px;
+    width: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Изрязва излишната част от изображението */
+    /*border-radius: 50%; кръгла снимка */
+    position: relative;
+}
+
+.picProfile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Гарантира, че снимката ще запълни цялото поле без да се разтегля */
+}
+.profile-section{
+    display: flex;
+    margin-top: 80px;
+    align-items: center;
+    margin-left: 150px;
+    margin-right: 150px;
+    width: 100%;
+}
+.personalInf{
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+    padding-right: 20px;
+    padding-left: 20px;
+    width: 25%;
+}
+.ContactInf{
+    width: 25%;
+    padding-left: 20px;
+}
+.ButSave{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+    border-bottom: 1px solid black;
+    margin: 0 150px 0 150px;
+    padding-bottom: 20px;
+}
+.ButSave input{
+    width: 300px;
+    padding-left: 10px;
+}
+/*---------------Обяви за животни// Продавач----------------------------------------------------*/
+.petsInf{
+    margin: 0 150px 0 150px;
+    margin-bottom: 20px;
+}
+/* Скриване на елементи по подразбиране */
+.hidden {
+    display: none;
+}
+
+/* Основен контейнер */
+.petsInf {
+    margin: 0 150px 20px 150px;
+}
+
+/* Секцията с обяви */
+.ads-section {
+    margin-top: 40px;
+    padding: 20px;
+}
+
+/* Решетка с карти */
+.ads-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Карта на обява */
+.ad-card {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+}
+
+.ad-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Снимка на животното */
+.pet-image-container {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.pet-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Основна информация */
+.pet-main-info h3 {
+    font-size: 22px;
+    margin: 8px 0;
+    text-align: center;
+}
+
+.pet-main-info p {
+    margin: 4px 0;
+    font-size: 14px;
+    color: #333;
+    text-align: center;
+}
+
+/* Действия (бутоните) */
+.pet-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.pet-actions button {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.pet-actions button:hover {
+    background-color: #388e3c;
+}
+
+/* Секция с подробности */
+.details-section {
+    width: 100%;
+    margin-top: 10px;
+    background-color: #eef2f5;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.details-content p,
+.contact-content p {
+    margin: 6px 0;
+    color: #333;
+}
+
+/* Контактна секция */
+.contact-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-picture {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+/* За мобилни устройства */
+@media (max-width: 768px) {
+    .petsInf {
+        margin: 0 20px 20px 20px;
+    }
+
+    .ads-list {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    .pet-main-info h3 {
+        font-size: 18px;
+    }
+
+    .pet-actions button {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+}
+
+
+.ads-section {
+    margin-top: 40px;
+    padding: 20px;
+}
+
+.ads-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 колони с равна ширина */
+    gap: 20px; /* Разстояние между елементите */
+}
+
+.ad-item {
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    align-items: center;
+    border-radius: 15px;
+    overflow: hidden;
+    padding: 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    transition: transform 0.2s ease;
+}
+.ad-item-form {
+    width: 100%;
+    max-width: 450px;
+}
+.ad-item p {
+    font-size: 15px;
+    color: #333;
+    word-break: break-word;
+}
+.ad-item1{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.edit-text{
+    font-weight: bold;
+}
+.ad-image {
+    height: 150px;
+    overflow: hidden;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.ad-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ad-details {
+    flex-grow: 1;
+
+}
+
+.ad-details h3 {
+    font-size: 30px;
+    margin: 0;
+
+}
+
+.ad-details p {
+    margin: 5px 0;
+    padding: 0px;
+}
+.ad-details #text{
+    font-weight: bold;
+}
+[data-field="description"] {
+    display: block;
+    max-height: 70px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ad-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.ad-actions button {
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 14px;
+}
+
+.ad-actions button:hover {
+    background-color: #45a049;
+}
+
+.delete-ad {
+    background-color: #f44336;
+}
+
+.delete-ad:hover {
+    background-color: #d32f2f;
+}
+/*--------------------------------Шаблон за добавяне на обява-------------------------------------------------------------*/
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
+    padding: 40px 20px;
+}
+
+.modal:target {
+    display: flex;
+}
+
+.modal .form-container {
+    background: #fff;
+    width: 90%;
+    max-width: 500px;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    position: relative;
+    font-family: 'Segoe UI', sans-serif;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal .close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    text-decoration: none;
+    color: #888;
+    font-weight: bold;
+    cursor: pointer;
+}
+.modal .close:hover {
+    color: black;
+}
+
+.modal .form-container h2 {
+    text-align: center;
+    font-size: 24px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.modal .input-box h6 {
+    font-size: 15px;
+    color: #333;
+}
+
+.modal .input-box input[type="text"],
+.modal .input-box input[type="number"],
+.modal .input-box input[type="file"],
+.modal .input-box select,
+.modal .input-box textarea {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 15px;
+    outline: none;
+    height: 50px;
+    max-height: max-content;
+}
+
+.modal .input-box textarea {
+    resize: vertical;
+}
+
+.modal .input-box label {
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.modal .hero {
+    width: 100%;
+    padding: 12px;
+    background: #e24261;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.modal .hero:hover {
+    background-color: #218838;
+}

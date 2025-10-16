@@ -1,0 +1,555 @@
+
+/*---------------------------------НАЧАЛНА СТРАНИЦА--------------------------------------------------*/
+@media(max-width: 700px)
+{
+    .menu-icon {
+        display: block;
+    }
+
+    /* Показване на линковете при активиране */
+    .nav-links ul.active {
+        display: flex;
+    }
+    .text-box h1{
+        font-size: 18px;
+        width: 80%;
+    }
+    .nav-links ul li {
+        display: block;
+        position: center;
+    }
+    nav .fa{
+        display: block;
+        color: aliceblue;
+        margin: 10px;
+        font-size: 22px;
+        cursor: pointer; 
+    }
+    .nav-links ul{
+        padding: 30px;
+    }
+    .nav-links a{
+        display: flex;
+        flex-direction: column;
+    }
+    .text-box{
+        padding-top: 20%;
+    }
+    .sub-header{
+        height: auto;
+    }
+    .sub-header h1{
+        font-size: 44px;
+    }
+}
+@media(max-width: 500px)
+{
+    .text-box h1{
+        font-size: 18px;
+    }
+    .nav-links ul li {
+        position: center;
+    }
+
+    nav .fa{
+        display: block;
+        color: aliceblue;
+        margin: 10px;
+        font-size: 22px;
+        cursor: pointer; 
+    }
+    .nav-links ul{
+        padding: 30px;
+    }
+    .text-box{
+        padding-top: 20%;
+    }
+    .sub-header h1{
+        font-size: 35px;
+    }
+}
+@media(max-width:700px)
+{
+    .row{
+        flex-direction: column;
+    }
+}
+
+@media(max-width:790px) {
+    .ads-list{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media(max-width:600px)
+{
+    .call h1{
+        font-size: 24px;
+    }
+    .sub-header h1{
+        margin-top: 0;
+        font-size: 20px;
+        padding-top: 0;
+    }
+    .ads-list{
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media(max-width:1400px) {
+    .ads-list{
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .header{
+        margin-left: 70px;
+    }
+}
+@media(max-width:1110px) {
+    .Filtri{
+        width: 200px;
+    }
+}
+@media(max-width:1078px) {
+    .ads-list{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media(max-width:1380px) {
+   
+    .Filtri{
+        width: 250px;
+    }
+    .pet-block{
+        width: auto;   
+    }
+    .pet-actions{
+        height: 50px;
+    }
+    .pet-actions button{
+        font-size: 13px;
+        text-align: center;
+    }
+}
+@media(max-width:670px) {
+    .Filtri{
+        width: auto;
+    }
+    .Filtri h2{
+        font-size: 18px;
+    }
+    .Filtri label{
+        font-size: 14px;
+    }
+    label {
+        font-size: 14px;
+    }
+}
+@media(max-width:500px) {
+    .pet-block{
+        width: auto;   
+    }
+    .breed-name{
+        font-size: 16px;
+    }
+    .pet-price{
+        font-size: 14px;
+    }
+}
+@media(max-width:1400px) {
+    .sub-header h1{
+        font-size: 50px;
+        padding: 20px;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
+@media (max-width: 1000px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        border-radius: 5px;
+        color: rgb(231, 69, 69);
+        font-size: 14px;
+        background-color: rgba(0, 0, 0, 0.8);
+        position: absolute;
+        top: 50px;
+        right: 100px;
+        width: 150px;
+        border-radius: 8px;
+        padding-left: 20px;
+    }
+    .hamburger {
+        display: block;
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
+
+    .fa-bars {
+        display: block;
+        position: absolute;
+        right: 20px;
+    }
+
+    .nav-links ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-links ul li {
+        margin: 10px 0;
+    }
+}
+@media(max-width:1401px) {
+    .contact{
+        display: flex;
+        align-items: center;
+        width: fit-content;
+    }
+    .row{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+    .culumn{
+        width: auto;
+    }
+}
+
+@media(max-width: 1100px)
+{
+    /* Скрива линковете, докато не се активира бургер менюто */
+    .nav-links ul {
+        gap: 2px;
+    }
+    .nav-links ul li a{
+        font-size: 22px;
+    }
+    .text-box h1{
+        font-size: 50px;
+        width: 90%;
+    }
+}
+@media(max-width: 1040px)
+{
+    .nav-links ul {
+        gap: 2px;
+    }
+    .nav-links ul li a{
+        font-size: 20px;
+    }
+    .text-box h1{
+        font-size: 46px;
+        width: 90%;
+    }
+    .text-box p{
+        font-size: 18px;
+    }
+    .header img{
+        width: 150px;
+        height: 150px;
+    }
+    .sub-header img{
+        width: 150px;
+        height: 150px;
+    }
+}
+
+@media(max-width: 485px)
+{
+    .sub-header h1{
+        font-size: 32px;
+    }
+}
+@media(max-width: 990px)
+{
+    .nav-links ul {
+        gap: 1px;
+    }
+    .nav-links ul li a{
+        font-size: 18px;
+    }
+ 
+    /* Показване на линковете при активиране */
+ /*   .nav-links ul.active {
+        display: flex;
+    }*/
+    .text-box h1{
+        font-size: 38px;
+        width: 90%;
+    }
+    .text-box p{
+        font-size: 14px;
+    }
+}
+@media(max-width: 950px)
+{
+   /* .menu-icon {
+        display: block;
+    }*/
+    /* Скрива линковете, докато не се активира бургер менюто */
+    .nav-links ul {
+        gap: 1px;
+    }
+    .nav-links ul li a{
+        font-size: 17px;
+    }
+ 
+    /* Показване на линковете при активиране */
+ /*   .nav-links ul.active {
+        display: flex;
+    }*/
+    .text-box h1{
+        font-size: 37px;
+        width: 90%;
+    }
+    .text-box p{
+        font-size: 14px;
+    }
+}
+@media(max-width: 905px)
+{
+   /* .menu-icon {
+        display: block;
+    }*/
+    /* Скрива линковете, докато не се активира бургер менюто */
+    .nav-links ul {
+        gap: 1px;
+    }
+    .nav-links ul li a{
+        font-size: 13px;
+    }
+ 
+    /* Показване на линковете при активиране */
+ /*   .nav-links ul.active {
+        display: flex;
+    }*/
+    .text-box h1{
+        font-size: 34px;
+        width: 90%;
+    }
+    .text-box p{
+        font-size: 14px;
+    }
+    .header img{
+        width: 150px;
+        height: 150px;
+    }
+    .sub-header img{
+        width: 150px;
+        height: 150px;
+    }
+}
+@media(max-width: 868px) {
+    .text-box p{
+        font-size: 12px;
+    }
+}
+@media(max-width: 1600px) {
+    .testmonials-col img{
+        display: none;
+    }
+}
+@media(max-width: 700px) {
+    .testmonials-col img{
+        height: 80px;
+        width: 90px;
+        display: unset;
+    }
+}
+
+
+/*----------------------Домашни любимци-----------------------------------*/
+
+
+/*----------------------Продавачи-----------------------------------*/
+@media(max-width: 2600px) {
+    .body{
+        width: 550px;
+        height: auto;
+    }
+}
+@media(max-width: 770px) {
+    .form-box{
+        width: 550px;
+        height: auto;
+    }
+}
+
+@media(max-width: 690px) {
+    .form-box{
+        width: 500px;
+        height: auto;
+    }
+}
+@media(max-width: 610px) {
+    .form-box{
+        width: 450px;
+        height: auto;
+    }
+}
+@media(max-width: 550px) {
+    .form-box{
+        width: 400px;
+        height: auto;
+    }
+}
+/*-------------------------КОНТАКТИ-------------------------------------------------------------------*/
+
+@media(max-width: 1400px) {
+    .card{
+        width: 400px;
+    }
+    .card img{
+        width: 230px;
+        height: 320px;
+    }
+    .container{
+        margin: 10px;
+    }
+    .container h2{
+        font-size: large;
+    }
+    .container button{
+        width: 150px;
+        height: 50px;
+    }
+}
+@media(max-width: 1200px) {
+    .container h2{
+        font-size: 17px;
+    }
+    .container b{
+        font-size: 14px;
+    }
+}
+@media(max-width: 1176px) {
+    .card{
+        height: 450px;
+        width: 350px;
+    }
+    .card img {
+        height: 280px;
+    }
+    .container{
+        margin: 10px;
+    }
+    .container h2{
+        font-size: large;
+    }
+    .container button{
+        width: 150px;
+        height: 50px;
+    }
+    .container button{
+        height: 40px;
+        align-items: center;
+        text-align: center;
+    }
+    
+}
+@media(max-width: 1076px) {
+    .card{
+        height: 450px;
+        width: 350px;
+    }
+    .card img {
+        height: 280px;
+    }
+    .container{
+        margin: 10px;
+    }
+    .container h2{
+        font-size: large;
+    }
+    .container button{
+        width: 150px;
+        height: 50px;
+    }
+    .container button{
+        height: 40px;
+        align-items: center;
+        text-align: center;
+    }
+    
+}
+@media(max-width: 1076px) {
+    .row{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    .card {
+        height: auto;
+        width: auto;
+        padding: 30px;
+    }
+}
+
+@media(max-width: 1446px) {
+    .contact-col{
+        display: flex;
+        flex-direction: column;
+    }
+    .button-group{
+        flex-direction: column;
+    }
+}
+
+@media(max-width: 1078px) {
+    .col{
+        display: inline-block;
+        width: 100px;
+    }
+    .row{
+        flex-direction: column;
+    }
+    .col{
+        align-items: center;
+        width: auto;
+        text-align: center;
+    }
+    .contact-col form{
+        width: 400px;
+    }
+    .text1 span{
+        text-align: left;
+    }
+    .question p{
+        overflow-wrap: break-word;
+    }
+}
+
+@media(max-width: 530px) {
+    .contact-col form{
+        width: 300px;
+    }
+    .text1 i {
+        font-size: 42px;
+        color: #e05d7e;
+    }
+    .text1 h5 {
+        font-size: 18px;
+    }
+    .text1 p {
+        font-size: 12px;
+    }
+    .question{
+        width: 100%;
+        text-align: center;
+        /* margin: auto; */
+        align-items: center;
+        padding-left: 30px;
+    }
+    .question p{
+        font-size: xx-large;
+        text-align: center;
+    }
+}
