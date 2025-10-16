@@ -1,0 +1,21 @@
+<html>
+    <head>
+        {% include 'header.html' %}
+    </head>
+    <body>
+       <section class="sub-header" style="height:auto;">           
+            {% include 'Menu_seller.html' %}
+            <h1>Намерете новия си домашен любимец</h1>
+        </section>
+        
+        <section class="All">
+            {% include 'Filtri.html' %}
+            {% include 'Al_anceta.html' %}
+        </section>
+
+        <section class="footer" >
+            {% include 'Footer.html' %}
+        </section>
+        <script src="{{ url_for('static', filename='js/Fun.js') }}"></script>
+    </body>
+</html>

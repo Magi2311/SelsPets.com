@@ -1,0 +1,105 @@
+<html>
+    <head>
+        {% include 'header.html' %}
+    </head>
+    <body>
+        <section class="sub-header" style="height:auto;">           
+            {% include 'Menu_seller.html' %}
+            <h1>Контакти</h1>
+        </section>
+
+        <section class="contact">
+            {% include 'Al_anceta.html' %}
+                <div class="row" style="gap: 67px;">
+                    <div class="column" style="width: 100%;">
+                        <div class="card">
+                        <img src="{{ url_for('static', filename='images/462648216_546492975030946_3691072417123618210_n.jpg') }}"  width="100%" height="450px">
+                            <div class="container">
+                            <h2>ЙОАННА ЯНЕВА</h2>
+                            <b>Главен управител</b>
+                            <p>YoanaYan@gmail.com</p>
+                            <p><button class="hero1"><a href="https://www.facebook.com/yoanna.yaneva.54">Message</a></button></p>
+                            <p><button class="hero1">Call</button></p>
+                            </div>
+                        </div>
+                    </div>
+                
+                <div class="column" style="width: 100%;">
+                    <div class="card">
+                    <img src="{{ url_for('static', filename='images/462566076_937324151187081_2123528364774480254_n.jpg') }}" width="100%" height="450px">
+                    <div class="container">
+                        <h2>МАРГАРИТА СТОЯНОВА</h2>
+                        <b>Собственик</b>
+                        <p>MargaritaS@gmail.com</p>
+                        <p><button class="hero1"><a href="https://www.facebook.com/margarita.stoyanova.779">Message</a></button></p>
+                        <p><button class="hero1">Call</button></p>
+                        
+                    </div>
+                    </div>
+                </div>
+                
+                <div class="column"style="width: 100%;">
+                    <div class="card" >
+                    <img src="{{ url_for('static', filename='images/4462570077_1781562125925761_2557133099399951365_n.jpg') }}" width="100%" height="450px">
+                    <div class="container">
+                        <h2>ТЕОДОР БОРИСОВ</h2>
+                        <b>Главен секретар</b>
+                        <p>Tborrisov@gmail.com</p>
+                        <p><button class="hero1"><a href="https://www.facebook.com/teodor.borisov.2002/">Message</a></button></p>
+                        <p><button class="hero1">Call</button></p>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </section>
+        <section class="location">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2932.4592416458477!2d26.335247599999988!3d42.693995799999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a620b3808f6cc3%3A0xf76eedb2b9048f0a!2zODgwMiDQm9C-0LfRj9GC0LAsINCh0LvQuNCy0LXQvQ!5e0!3m2!1sbg!2sbg!4v1680018169689!5m2!1sbg!2sbg"
+             width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </section>
+        <section class="contact">
+            <div class="row">
+                <div class="contact col" style="    margin-bottom: 77px;">
+                    <div class="text1">
+                        <i class="fa fa-home"></i>
+                        
+                        <span>
+                            <h5>ул. Ален мак 45 </h5>
+                            <p>Coфия, България</p>
+                        </span>
+                    </div>
+                    <div class="text1">
+                        <i class="fa fa-phone"></i>
+                        
+                        <span>
+                            <h5>+359 88 407 4008</h5>
+                            <p font-size="20px">Понеделник до Петък, 10ч до 17ч.</p>
+                        </span>
+                    </div>
+                    <div class="text1">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>
+                            <h5>PetStore@gmail.com</h5>
+                            <p>Пишете ни при въпроси</p>
+                        </span>
+                    </div>
+                </div>
+                <div class="contact-col">
+                    <form action="">
+                        <input type="text" placeholder="Enter your name" required>
+                        <input type="email" placeholder="Enter Email address" required>
+                        <textarea rows="8" placeholder="Message" required></textarea>
+                        <div class="button-group">
+                            <button type="submit" class="hero1">Изпрати съобщение</button>
+                            <button type="reset" class="hero1">Изчисти</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <section class="footer" >
+            {% include 'Footer.html' %}
+        </section>
+        <script src="{{ url_for('static', filename='js/Fun.js') }}"></script>
+    </body>
+</html>

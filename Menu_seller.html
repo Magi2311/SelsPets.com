@@ -1,0 +1,41 @@
+            <nav>
+                <a href="{{ url_for('seller_home') }}">
+                    <img src="{{ url_for('static', filename='images/464903982_976393754305007_2264594338429626505_n.png') }}" alt="Logo">
+                </a>
+                <div class="nav-links" id="navLinks">
+                    <ul style="align-items: center; display: flex;">
+                        <li><a href="{{ url_for('seller_home') }}">Начало</a></li>
+                        <li><a href="{{ url_for('seller_pets') }}">Домашни любимци</a></li>
+                        <li><a href="{{ url_for('seller_profile') }}">Профил</a></li>
+                        <li><a href="{{ url_for('seller_contact') }}">Контакти</a></li>
+                        <li class="account-wrapper">
+                            <div class="accountPic" onclick="toggleMenu()">
+                                <img src="{{ url_for('profile_picture', user_id=session['user_id']) }}" alt="acc">
+                            </div>
+                            <ul class="account-menu" id="accountMenu">
+                                <li onclick="logout()" style="font-weight: bold; font-size: larger;">Изход <br>от профила</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <box-icon name='menu'></box-icon>
+                <i class="fa fa-bars" id="menuIcon" onclick="showMenu()"></i>
+            </nav>
+            <script>
+                function logout() {
+                    window.location.href = "{{ url_for('home') }}";
+                }
+
+                function toggleMenu() {
+                    const menu = document.getElementById("accountMenu");
+                    menu.classList.toggle("show");
+
+                    // Затваряне, ако се кликне извън менюто
+                    document.addEventListener("click", function (event) {
+                        const isClickInside = document.querySelector('.account-wrapper').contains(event.target);
+                        if (!isClickInside) {
+                            menu.classList.remove("show");
+                        }
+                    });
+                }
+            </script>

@@ -1,0 +1,341 @@
+<!-- Кръгъл бутон за отваряне на анкетата -->
+<div id="ai-toggle-btn" title="AI препоръка">
+  🐾
+</div>
+
+<!-- Панел с анкетата -->
+<div id="ai-survey-panel" class="survey-panel">
+  <h3 style="margin: 10px;">Какво животно е подходящо за теб?</h3>
+  <form id="pet-survey-form">
+
+    <!-- Жилищна среда -->
+    <fieldset>
+      <legend>Жилищна среда</legend>
+      <label>Живееш в:
+        <select name="apartment">
+          <option value="2">Къща с двор</option>
+          <option value="1">Апартамент с тераса</option>
+          <option value="0">Апартамент без тераса</option>
+        </select>
+      </label>
+      <label>Имаш ли деца?
+        <select name="children">
+          <option value="1">Да</option>
+          <option value="0">Не</option>
+        </select>
+      </label>
+      <label>Имаш ли алергии?
+        <select name="allergy">
+          <option value="1">Да</option>
+          <option value="0">Не</option>
+        </select>
+      </label>
+      <label>Домът ти е:
+        <select name="noise_level">
+          <option value="0">Спокоен и тих</option>
+          <option value="1">Шумен (деца, телевизия, гости)</option>
+        </select>
+      </label>
+    </fieldset>
+
+    <!-- Ресурси и време -->
+    <fieldset>
+      <legend>Време и възможности</legend>
+      <label>Колко време на ден можеш да отделяш?
+        <select name="time">
+          <option value="0">Под 30 минути</option>
+          <option value="1">30-60 минути</option>
+          <option value="2">Над 1 час</option>
+        </select>
+      </label>
+      <label>Колко често пътуваш?
+        <select name="travel_often">
+          <option value="0">Рядко</option>
+          <option value="1">Понякога</option>
+          <option value="2">Често</option>
+        </select>
+      </label>
+      <label>Бюджет за месечни грижи:
+        <select name="budget">
+          <option value="0">Под 50 лв</option>
+          <option value="1">50–150 лв</option>
+          <option value="2">Над 150 лв</option>
+        </select>
+      </label>
+    </fieldset>
+
+    <!-- 🐾 Предпочитания и опит -->
+    <fieldset>
+      <legend>Лични предпочитания</legend>
+      <label>Имал ли си животни досега?
+        <select name="experience">
+          <option value="2">Да, дълго време</option>
+          <option value="1">Да, за кратко</option>
+          <option value="0">Не</option>
+        </select>
+      </label>
+      <label>Предпочиташ животно:
+        <select name="social">
+          <option value="0">Спокойно, независимо</option>
+          <option value="1">Социално и гушливо</option>
+        </select>
+      </label>
+      <label>Харесваш ли животни с козина?
+        <select name="furry">
+          <option value="1">Да</option>
+          <option value="0">Не</option>
+        </select>
+      </label>
+      <label>Предпочиташ активен любимец?
+        <select name="active">
+          <option value="1">Да</option>
+          <option value="0">Не</option>
+        </select>
+      </label>
+      <label>Какъв размер животно предпочиташ?
+        <select name="size">
+          <option value="0">Малко (до 5 кг)</option>
+          <option value="1">Средно (5–20 кг)</option>
+          <option value="2">Голямо (над 20 кг)</option>
+        </select>
+      </label>
+    </fieldset>
+    <div class="result" style="display: flex; flex-direction: row; gap:10px">
+    <button type="submit">Виж препоръка</button>
+    <button type="button" id="reset-btn" style="background-color:red;">Изчисти</button>
+</div>
+
+<!-- Тук ще се появява препоръката -->
+<div id="survey-result" style="margin-top: 15px;
+ padding: 10px; background-color: #fffbe0; 
+ border: 1px solid #ccc; border-radius: 5px; 
+ max-height: 250px; 
+ overflow-y: auto; font-size: 14px;">
+ </div>
+</form>
+<!-- <div>{% if result %}
+    <p>Препоръчваме ти: {{ result }}</p>
+    {% endif %}
+</div>-->  
+</div>
+
+<style>
+  /* Модален прозорец */
+.modal {
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5); /* тъмен фон */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  position: relative;
+}
+
+.close {
+  color: #aaa;
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #000;
+}
+
+/* Кръгъл бутон за отваряне */
+#ai-toggle-btn {
+  position: fixed;
+  bottom: 30px; /* 📍 Остава долу */
+  right: 30px;
+  background-color: #ffae00;
+  color: white;
+  border-radius: 50%;
+  width: 75px;
+  height: 75px;
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 0 10px gray;
+  z-index: 1000;
+}
+#ai-toggle-btn:hover {
+  background-color: #ff9100;
+}
+
+/* Панел с анкетата */
+.survey-panel {
+    position: fixed;
+    /* bottom: 120px; */
+    right: -400px;
+    /* height: 800px; */
+    /* width: 260px; */
+    max-height: 765px;
+    top: 80px;
+    background: antiquewhite;
+    border: 2px solid #ccc;
+    padding: 15px;
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.2);
+    transition: right 0.5s ease;
+    z-index: 999;
+    border-radius: 10px 0 0 10px;
+    overflow-y: auto;
+}
+.survey-panel.show {
+  right: 0;
+}
+.h3{
+        margin: 10px 0;
+}
+@media (max-width: 600px) {
+  .survey-panel {
+    width: 90vw;
+    right: -95vw;
+    bottom: 100px; /* 📱 Малко над мобилния бутон */
+    max-height: 75vh;
+  }
+  .survey-panel.show {
+    right: 0;
+  }
+
+  #ai-toggle-btn {
+    bottom: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+  }
+}
+
+#ai-toggle-btn:hover {
+  background-color: #ff9100;
+}
+
+.survey-panel.show {
+  right: 0;
+}
+
+.survey-panel h3 {
+  font-size: 18px;
+  color: #333;
+  text-align: center;
+}
+
+.survey-panel form label {
+  margin-bottom: 8px;
+  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  color: #333;
+}
+
+.survey-panel form select,
+.survey-panel form button {
+  padding: 5px;
+  font-size: 13px;
+  border-radius: 4px;
+  border: 1px solid #aaa;
+}
+
+.survey-panel form button {
+  background-color: #4CAF50;
+  color: white;
+  font-weight: bold;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.survey-panel form button:hover {
+  background-color: #45a049;
+}
+
+#survey-result {
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* за телефони */
+@media (max-width: 600px) {
+  .survey-panel {
+    width: 90vw;
+    right: -95vw;
+  }
+  .survey-panel.show {
+    right: 0;
+  }
+  #ai-toggle-btn {
+    bottom: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+  }
+}
+</style>
+
+<script>
+  const surveyPanel = document.getElementById('ai-survey-panel');
+  const toggleBtn = document.getElementById('ai-toggle-btn');
+
+  toggleBtn.addEventListener('click', () => {
+    surveyPanel.classList.toggle('show');
+  });
+
+  // Показване на панела автоматично след 5 секунди
+  setTimeout(() => {
+    surveyPanel.classList.add('show');
+  }, 5000);
+
+  // При изпращане на формата
+  document.getElementById('pet-survey-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const resultBox = document.getElementById('survey-result');
+    resultBox.textContent = '🔄 Зареждане...';
+
+    const formData = new FormData(e.target);
+    const userInput = {};
+    for (const [key, value] of formData.entries()) {
+      userInput[key] = Number(value);
+    }
+
+    fetch('/predict', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(userInput)
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.recommendation) {
+         resultBox.innerHTML = data.recommendation.replace(/\n/g, '<br>');
+      } else if (data.error) {
+        resultBox.textContent = '⚠️ Грешка: ' + data.error;
+      }
+    });
+  });
+
+  // Нулиране
+  document.getElementById('reset-btn').addEventListener('click', function () {
+    document.getElementById('pet-survey-form').reset();
+    document.getElementById('survey-result').textContent = '';
+  });
+</script>
+
+

@@ -1,0 +1,179 @@
+<html>
+    <head>
+        {% include 'header.html' %}   
+    </head>
+    <body>
+        <section class="sub-header">           
+            {% include 'Menu.html' %} 
+            {% include 'Al_anceta.html' %}
+            <h1>Продавачи</h1>
+        </section>
+        <div class="form-box" style="background-color: rgba(92, 19, 31, 0.774);; margin: 75px" >
+         <div id="account">
+                <div class="form-box">
+                <!--------------------------Login------------------------->
+                <form action="/login" method="POST"><
+                    <div class="registration-container" action="/login" method="post" id="login">
+
+                        <div class="top">
+                            <header>Вписване</header>
+                            <span>Създаване на акаунт -> <a href="#" onclick="showRegister()">ТУК</a></span>
+                        </div>
+
+                        <div class="input-box">
+                            <input  type="text" class="input-field" name="login" placeholder="Имейл или Потебителско име">
+                            <i class="bx bx-user"></i>
+                        </div>
+                        <div class="input-box">
+                            <input  type="password" class="input-field" name="password" placeholder="Парола">
+                            <i class="bx bx-lock-alt"></i>
+                        </div>
+                        
+                        <div class="input-box">
+                            <input  type="submit" class="submit" value="Влизане">
+                        </div>
+
+                        <div class="two-col">
+                            <div class="one">
+                                <input type="checkbox" id="login-check">
+                                <label for="login-check">Запази профила</label>
+                            </div>
+
+                            <div class="two">
+                                <label><a href="#">Забравена парола?</a></label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <!-------------------------Registration------------------------------>
+                    <div class="registration-container" id="register">
+
+                        <div class="top">
+                            <header>Създаване на акаунт</header>
+                            <span>Влизане в съществуваш акаунт -> <a href="#" onclick="showLogin()">ТУК</a></span>
+                        </div>
+                    <div class="regionAll">
+
+                    <form action="/register" method="POST" enctype="multipart/form-data">
+                        
+                    <div class="regionColl1">
+
+                        <div class="profile-pic">
+                            <label for="profile_picture">
+                              <img
+                                name="profile_picture"
+                                id="profilePreview"
+                                src="{{ url_for('static', filename='images/images.png') }}"
+                                alt="Профилна снимка">
+                              <div class="upload-overlay">
+                                <i class="bx bx-camera"></i>
+                                <span>Качи снимка</span>
+                              </div>
+                            </label>
+                          
+                            <!-- Това е полето за качване на снимка, което се скрива визуално -->
+                            <input type="file" id="profileImage" style="display: none;" name="profile_picture" accept="image/*">
+                          </div>
+                        
+                        <div class="two-form">
+                            <div class="input-box">
+                                <input  type="text" class="input-field" name="first_name" placeholder="Име">
+                                <i class="bx bx-user"></i>
+                            </div>
+                            <div class="input-box">
+                                <input  type="text" class="input-field" name="last_name" placeholder="Фамилия">
+                                <i class="bx bx-user"></i>
+                            </div>
+                        </div>
+
+                        <div class="input-box">
+                            <input
+                              id="phoneField"
+                              type="tel"
+                              class="input-field"
+                              name="phone"
+                              placeholder="Телефонен номер"
+                              onfocus="ensurePrefix()"
+                              oninput="limitDigits(event)"
+                              pattern="^\\+359\\d{9}$"
+                              title="Моля, въведете телефон в този формат: +359XXXXXXXXX (общо 13 символа)."
+                              required
+                            >
+                            <i class="bx bxs-phone"></i>
+                          </div>
+                        <div class="input-box">
+                            <input type="text" id="birthdate" class="input-field" name="birthdate" value="Дата на раждане" onfocus="this.type='date'; 
+                            this.value='';" onblur="if(!this.value) { this.type='text'; this.value='Дата на раждане'; }">
+                            <i class="bx bxs-face"></i>
+                        </div>
+                    </div>
+
+                    <div class="regionColl2">
+
+                        <!--<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>--> 
+                        <div class="two-form">
+                            <div class="input-box">
+                                <input id="city" type="text" class="input-field" name="city" placeholder="Град" maxlength="20">
+                                <i class="bx bx-navigation"></i>
+                            </div>
+        
+                            <div class="input-box">
+                                <input id="postalCode" type="text" name="postalCode" class="input-field" placeholder="Пощ.код" maxlength="4">
+                                <i class="bx bx-navigation"></i>
+                            </div>
+                        </div>
+
+                        <div class="input-box">
+                            <input  type="text" class="input-field" name="email" placeholder="Имейл">
+                            <i class="bx bx-envelope"></i>
+                        </div>
+
+                        <div class="input-box">
+                            <input  type="text" class="input-field" name="username" placeholder="Потребителско име">
+                            <i class="bx bx-envelope"></i>
+                        </div>
+
+                        <div class="input-box" style="position: relative;">
+                            <input id="password" type="password" name="password" class="input-field" placeholder="Парола" required>
+                            <i class="bx bx-lock-alt"></i>
+                            <span id="togglePassword" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">👁️</span>
+                          </div>
+                          
+                          <div class="input-box" style="position: relative;">
+                            <input id="confirmPassword" name="confirmPassword" type="password" class="input-field" placeholder="Повтори паролата" required>
+                            <i class="bx bx-lock-alt"></i>
+                          </div>
+                          
+                          <!-- Съобщения за грешки и ограничения -->
+                          <div id="error-message" style="color: rgb(255, 253, 253); display: none; font-size: 15px; ">Паролите не съвпадат!</div>
+                          <div id="password-strength" style="color: rgb(248, 248, 248); display: none; font-size: 15px; position: absolute; top: 100%; left: 0; margin-top: 5px;">
+                            Паролата трябва да съдържа минимум 8 символа, една главна буква, една цифра и един специален символ.
+                          </div>     
+                    </div>
+                    </div>
+                        <div class="input-box">
+                            <input  type="submit" class="submit" value="Запазване">
+                        </div>
+                        <div class="two-col">
+                            <div class="one">
+                                <input type="checkbox" id="register-check">
+                                <label for="register-check">Запази профила</label>
+                            </div>
+
+                            <div class="two">
+                                <label><a href="#">Поверителност и защита</a></label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+        
+        <section class="footer" >
+            {% include 'Footer.html' %}
+        </section>
+        
+        <script src="{{ url_for('static', filename='js/Fun.js') }}"></script>
+    </body>
+</html>

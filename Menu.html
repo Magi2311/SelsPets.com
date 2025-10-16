@@ -1,0 +1,16 @@
+<nav>
+    <a href="{{ url_for('home') }}">
+        <img src="{{ url_for('static', filename='images/464903982_976393754305007_2264594338429626505_n.png') }}" alt="Logo">
+    </a>
+    <div class="hamburger" onclick="toggleMenu()">
+        <i class="fa fa-bars" id="menuIcon"></i>
+    </div>
+    <div class="nav-links" id="navLinks">
+    <ul>
+        <li><a href="{{ url_for('home') }}">Начало</a></li>
+        <li><a href="{{ url_for('pets') }}">Домашни любимци</a></li>
+        <li><a href="{{ url_for('seller') }}">Стани Продавач</a></li>
+        <li><a href="{{ url_for('contact') }}">Контакти</a></li>
+    </ul>
+    </div>
+</nav>

@@ -1,0 +1,196 @@
+<html>
+    <head>
+        {% include 'header.html' %}
+    </head>
+    <body>
+
+        <section class="header">
+
+            {% include 'Menu_seller.html' %} 
+            {% include 'Al_anceta.html' %}
+            <div class="text-box" id="firstPage">
+                <h1>Вашето място за обяви за <br>домашни любимци – лесно, бързо, достъпно.</h1>
+                <br>
+                <p>  Добре дошли в нашия свят на домашни любимци! Тук можете лесно да откриете своя нов пухкав приятел <br>
+                    или да помогнете на друг да намери идеалния любимец, като качите обява за продажба. Присъединете се <br>
+                    към нашата общност от любители на животни и направете първата стъпка към ново приятелство!
+                    <br>
+            </div>
+        </section>
+
+
+        <section class="course">
+            <h1>Работно време</h1>
+            <p>Можете да се свържете с нас при възникнали въпроси и проблеми.</p>
+            <br>
+            <a href="{{ url_for('seller_contact') }}" class="hero-u">Контакти</a>
+            
+            <div class="row">
+
+
+                <div class="course-col">
+                    <h3> Делнични дни</h3>
+                    <p>Работно време за обратна връзка: <br>
+                        8:00 до 20:00 часа
+                       </p>
+                </div>
+
+                <div class="course-col">
+                    <h3> Почивни дни</h3>
+                    <p> Работно време за обратна връзка: 
+                        <br>
+                        от 10:00 до 14:00 часа</p>
+                </div>
+
+                <div class="course-col">
+                    <h3>Национални празници </h3>
+                    <p>Няма да успеете да се свържете с нас по телефона, затова може да оставите съобщение и ще получите отговор в най-скоро време.</p>
+                </div>
+            </div>
+
+        </section>
+        <br>
+        <br>
+
+
+        <section class="campus">
+
+            <h1>Нашите офиси</h1>
+            <p>Можете да ни намерите на тези адреси.Заповядайте!</p>
+
+            <div class="row">
+
+                <div class="campus-col">
+                    <img src="{{ url_for('static', filename='images/sgrada1.jpg') }}">
+                    <div class="layer">
+                        <h3>София</h3>
+                        <p>бул.Стефан Стамболов 10</p>
+                    </div>
+                </div>
+                <div class="campus-col">
+                    <img src="{{ url_for('static', filename='images/sgrada2.jpg') }}">
+                    <div class="layer">
+                        <h3>Пловдив</h3>
+                        <p>бул.Княз Борис 3</p>
+                    </div>
+                </div>
+                <div class="campus-col">
+                    <img src="{{ url_for('static', filename='images/sgrada3.jpg') }}">
+                    <div class="layer">
+                        <h3>Варна</h3>
+                        <p>бул.Владислав Варненчик 15</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="testmonials">
+            <br>
+
+            <h1>Мнения на нашите посетители </h1>
+            <p>Чрез анкети, запитвания и много отзиви можем да ви представим някои на тях.Имаме <br>
+                висока използваемост като подължаваме да събираме все още мнения и<br>
+                от десеторната скала се нареждаме с оценка от (9.3). Страшно благодарни сме и чакаме отново посещението ви.</p>
+
+
+             <div class="row">
+                <div class="testmonials-col">
+                    <img src="{{ url_for('static', filename='images/462578454_1102243918060849_1555337413959683172_n.jpg') }}" >
+                    <div>
+                        <p>
+                            Секцията за купувач и продавач е изключително полезна. Тя позволява ясно разграничение между двете целеви групи, <br>
+                            като всяка от тях получава персонализирана информация и функционалности. <br>
+                            Това прави сайта лесен за използване и подобрява цялостното изживяване на потребителите.
+                            
+
+                        </p>
+                        <h3>Йоанна Янева</h3>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                </div>
+                <div class="testmonials-col">
+                    <img src="{{ url_for('static', filename='images/462584751_1106464731012597_5581378823691262624_n.jpg') }}" >
+                    <div>
+                        <p>
+                            Галерията със снимки на различни видове домашни любимци е прекрасно допълнение.<br>
+                             Тя дава визуална представа за наличните животни и създава емоционална връзка с посетителите. Би било полезно, <br>
+                             ако към снимките има и кратко описание за всяко животно, като порода, възраст и специфични нужди
+                         
+
+                        </p>
+                        <h3>Маргаритa Стоянова</h3>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa-brands fa-star-half-o"></i>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+
+                <div class="testmonials-col">
+                    <img src="{{ url_for('static', filename='images/462648479_8989334801117963_2354499554490218503_n.jpg') }}" >
+                    <div>
+                    <p>
+                        Контактната форма е много удобна и дава възможност на посетителите да задават въпроси директно. <br>
+                        Важно е тя да бъде лесна за попълване и да включва задължителни полета за име, имейл и съобщение,<br>
+                         за да се избегне спам и неясни запитвания.
+                        
+                    </p>
+                    <h3>Теодор Борисов </h3>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa-brands fa-star-o"></i>
+                    </div>
+                </div>
+
+                <div class="testmonials-col">
+                <img src="{{ url_for('static', filename='images/462548975_1224516048626053_6438318431512068381_n.jpg') }}" >
+                <div>
+                    <p>
+                        Сайтът изглежда добре организиран, а наличието на филтри е голямо предимство.<br>
+                        Те помагат на потребителите бързо да намерят подходящия домашен любимец според техните предпочитания,<br>
+                        като порода, възраст, размер или местоположение.
+                    
+                        
+                    </p>
+                    <h3>Мартин Иванов</h3>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+
+                </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="call">
+
+            <h1>Как да се свържете с нас?</h1>
+            <p>Малко по-нагоре е описано кога работи администрацията 
+                ,към която може да задавате вдякакви въпроси!</p>
+            <a href="{{ url_for('seller_contact') }}" class="hero">Свържете се с нас</a>
+
+        </section>
+
+        <section class="footer" >
+            {% include 'Footer.html' %}
+        </section>
+
+        <script src="{{ url_for('static', filename='js/Fun.js') }}"></script>
+
+    </body>
+</html>

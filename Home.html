@@ -1,0 +1,546 @@
+<html>
+    <head>
+        {% include 'header.html' %}
+    </head>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const menuIcon = document.getElementById("menu-icon");
+            const navbar = document.querySelector(".nav-links ul");
+
+            if (menuIcon) {
+                menuIcon.addEventListener("click", () => {
+                    navbar.classList.toggle("active");
+                });
+            }
+        });
+    </script>
+    <body>
+
+        <section class="header">
+
+            {% include 'Menu.html' %}
+            {% include 'Al_anceta.html' %}   
+        
+            <div class="text-box" id="firstPage">
+                <h1>Вашето място за обяви за <br>домашни любимци – лесно, бързо, достъпно.</h1>
+                <br>
+                <p>  Добре дошли в нашия свят на домашни любимци! Тук можете лесно да откриете своя нов пухкав приятел <br>
+                    или да помогнете на друг да намери идеалния любимец, като качите обява за продажба. Присъединете се <br>
+                    към нашата общност от любители на животни и направете първата стъпка към ново приятелство!
+                    <br>
+
+                    <div class="buttons">
+                    <a href="{{ url_for('pets') }}" class="hero">Купувач</a>
+                    <a href="#" class="hero" onclick="togglePages()">Продавач</a>
+                    </div>
+            </div>
+
+            <div id="account">
+                <div class="form-box">
+                <!--------------------------Login------------------------->
+                <form action="/login" method="POST"><
+                    <div class="registration-container" action="/login" method="post" id="login">
+
+                        <div class="top">
+                            <header>Вписване</header>
+                            <span>Създаване на акаунт -> <a href="#" onclick="showRegister()">ТУК</a></span>
+                        </div>
+
+                        <div class="input-box">
+                            <input  type="text" class="input-field" name="login" placeholder="Имейл или Потебителско име">
+                            <i class="bx bx-user"></i>
+                        </div>
+                        <div class="input-box">
+                            <input  type="password" class="input-field" name="password" placeholder="Парола">
+                            <i class="bx bx-lock-alt"></i>
+                        </div>
+                        
+                        <div class="input-box">
+                            <input  type="submit" class="submit" value="Влизане">
+                        </div>
+
+                        <div class="two-col">
+                            <div class="one">
+                                <input type="checkbox" id="login-check">
+                                <label for="login-check">Запази профила</label>
+                            </div>
+
+                            <div class="two">
+                                <label><a href="#">Забравена парола?</a></label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <!-------------------------Registration------------------------------>
+                <form action="/register" method="POST" enctype="multipart/form-data">
+                    <div class="registration-container" id="register">
+
+                        <div class="top">
+                            <header>Създаване на акаунт</header>
+                            <span>Влизане в съществуваш акаунт -> <a href="#" onclick="showLogin()">ТУК</a></span>
+                        </div>
+                    <div class="regionAll">
+                        
+                    <div class="regionColl1">
+
+                        <div class="profile-pic">
+                            <label for="profileImage"> 
+                                    <img
+                                    name="profile_picture"
+                                    id="profilePreview"
+                                    src="{{ url_for('static', filename='images/images.png') }}"
+                                    alt="Профилна снимка">
+                                <div class="upload-overlay">
+                                    <i class="bx bx-camera"></i>
+                                    <span>Качи снимка</span>
+                                </div>
+                            </label>
+                          
+                            <!-- Това е полето за качване на снимка, което се скрива визуално -->
+                            <input type="file" id="profileImage" style="display: none;" name="profile_picture" accept="image/*">
+                          </div>
+                          
+                          <script>
+                            const profileImageInput = document.getElementById('profileImage');
+                            const profilePreview = document.getElementById('profilePreview');
+
+                            profileImageInput.addEventListener('change', function(event) {
+                                const file = event.target.files[0];
+                                if (!file) return;
+
+                                const reader = new FileReader();
+                                reader.onload = function(e) {
+                                profilePreview.src = e.target.result;
+                                };
+                                reader.readAsDataURL(file);
+                            });
+                          </script>
+                        
+                        <div class="two-form">
+                            <div class="input-box">
+                                <input  type="text" class="input-field" name="first_name" placeholder="Име"pattern="^[А-Яа-яA-Za-z\s\-]+$" required>
+                                <i class="bx bx-user"></i>
+                            </div>
+                            <div class="input-box">
+                                <input  type="text" class="input-field" name="last_name" placeholder="Фамилия"pattern="^[А-Яа-яA-Za-z\s\-]+$" required>
+                                <i class="bx bx-user"></i>
+                            </div>
+                        </div>
+
+                        <div class="input-box">
+                            <input
+                              id="phoneField"
+                              type="tel"
+                              class="input-field"
+                              name="phone"
+                              placeholder="Телефонен номер"
+                              onfocus="ensurePrefix()"
+                              oninput="limitDigits(event)"
+                              pattern="^\+359\d{9}$"
+                              title="Моля, въведете телефон в този формат: +359XXXXXXXXX (общо 12 числа)."
+                              required
+                            >
+                            <i class="bx bxs-phone"></i>
+                          </div>
+
+                          <script>
+                            function ensurePrefix() {
+                              const prefix = '+359';
+                              const phoneField = document.getElementById('phoneField');
+                              // Ако полето е празно при фокус, добавяме +359
+                              if (!phoneField.value) {
+                                phoneField.value = prefix;
+                              }
+                            }
+                          
+                            function limitDigits(event) {
+                                const prefix = '+359';
+                                let val = event.target.value;
+
+                                // Ако няма префикс, добави го
+                                if (!val.startsWith(prefix)) {
+                                val = prefix + val.replace(/\D/g, '');
+                                } else {
+                                // Премахни всички нецифрови символи след префикса
+                                let rest = val.slice(prefix.length).replace(/\D/g, '');
+
+                                // Ограничи до 9 цифри след префикса
+                                rest = rest.slice(0, 9);
+
+                                val = prefix + rest;
+                                }
+
+                                event.target.value = val;
+                            }
+                          </script>
+
+                        <div class="input-box">
+                            <input type="text" id="birth_date" class="input-field" name="birth_date" value="Дата на раждане" onfocus="this.type='date'; 
+                            this.value='';" onblur="if(!this.value) { this.type='text'; this.value='Дата на раждане'; }">
+                            <i class="bx bxs-face"></i>
+                        </div>
+                    </div>
+
+                    <div class="regionColl2">
+
+                        <!--<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>--> 
+                        <div class="two-form">
+                            <div class="input-box">
+                                <input id="city" type="text" class="input-field" name="city" placeholder="Град" maxlength="20">
+                                <i class="bx bx-navigation"></i>
+                            </div>
+        
+                            <div class="input-box">
+                                <input id="postalCode" type="text" name="postal_code" class="input-field" placeholder="Пощ.код" maxlength="4">
+                                <i class="bx bx-navigation"></i>
+                            </div>
+
+                            <script>
+                                const cityInput = document.getElementById('city');
+                                const postalCodeInput = document.getElementById('postalCode');
+                                const cityError = document.getElementById('city-error');
+                                const postalError = document.getElementById('postal-error');
+
+                                // Позволени символи за "Град" – само кирилица, интервал, точка и тире
+                                cityInput.addEventListener('input', function () {
+                                    const regex = /^[А-Яа-яЁё -.]+$/;
+                                    if (!regex.test(cityInput.value) && cityInput.value !== "") {
+                                        cityError.style.display = 'block';
+                                        cityInput.value = cityInput.value.replace(/[^А-Яа-яЁё -.]/g, '');
+                                    } else {
+                                        cityError.style.display = 'none';
+                                    }
+                                });
+
+                                // Ограничение за "Пощенски код" – само 4 цифри
+                                postalCodeInput.addEventListener('input', function () {
+                                    postalCodeInput.value = postalCodeInput.value.replace(/\D/g, '').substring(0, 4);
+                                    if (postalCodeInput.value.length === 4) {
+                                        postalError.style.display = 'none';
+                                    } else {
+                                        postalError.style.display = 'block';
+                                    }
+                                });
+                                                        </script>
+                        </div>
+
+                        <div class="input-box">
+                            <input  type="email" class="input-field" name="email" placeholder="Имейл">
+                            <i class="bx bx-envelope"></i>
+                        </div>
+
+                        <div class="input-box">
+                            <input  type="text" class="input-field" name="username" placeholder="Потребителско име">
+                            <i class="bx bx-envelope"></i>
+                        </div>
+
+                        <div class="input-box" style="position: relative;">
+                            <input id="password" type="password" name="password" class="input-field" placeholder="Парола" required>
+                            <i class="bx bx-lock-alt"></i>
+                            <span id="togglePassword" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">👁️</span>
+                          </div>
+                          
+                          <div class="input-box" style="position: relative;">
+                            <input id="confirmPassword" name="confirmPassword" type="password" class="input-field" placeholder="Повтори паролата" required>
+                            <i class="bx bx-lock-alt"></i>
+                          </div>
+                          
+                          <!-- Съобщения за грешки и ограничения -->
+                          <div id="error-message" style="color: rgb(255, 253, 253); display: none; font-size: 15px; ">Паролите не съвпадат!</div>
+                          <div id="password-strength" style="color: rgb(248, 248, 248); display: none; font-size: 15px; position: absolute; top: 100%; left: 0; margin-top: 5px;">
+                            Паролата трябва да съдържа минимум 8 символа, една главна буква, една цифра и един специален символ.
+                          </div>
+                          
+                          <script>
+                            const passwordField = document.getElementById('password');
+                            const confirmPasswordField = document.getElementById('confirmPassword');
+                            const errorMessage = document.getElementById('error-message');
+                            const passwordStrengthMessage = document.getElementById('password-strength');
+                            const togglePassword = document.getElementById('togglePassword');
+                          
+                            // Регулярно изражение за силата на паролата
+                            const strongPasswordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+                          
+                            // Функция за проверка дали паролите съвпадат
+                            function validatePasswords() {
+                              if (passwordField.value !== confirmPasswordField.value) {
+                                errorMessage.style.display = 'block';
+                                confirmPasswordField.setCustomValidity("Паролите не съвпадат/n Над 8 символа, Една цифра и един специален знак ");
+                              } else {
+                                errorMessage.style.display = 'none';
+                                confirmPasswordField.setCustomValidity("");
+                              }
+                            }
+                          
+                            // Функция за проверка на силата на паролата
+                            function validatePasswordStrength() {
+                              if (passwordField.value.length > 0 && !strongPasswordRegex.test(passwordField.value)) {
+                                passwordStrengthMessage.style.display = 'block';
+                              } else {
+                                passwordStrengthMessage.style.display = 'none';
+                              }
+                            }
+                          
+                            // Функция за показване/скриване на паролата
+                            togglePassword.addEventListener('click', function() {
+                              const type = passwordField.type === 'password' ? 'text' : 'password';
+                              passwordField.type = type;
+                              confirmPasswordField.type = type;
+                              togglePassword.textContent = type === 'password' ? '👁️' : '🙈';
+                            });
+                          
+                            // Слушатели за събития за проверка на паролите
+                            passwordField.addEventListener('input', function() {
+                              validatePasswords();
+                              validatePasswordStrength();
+                            });
+                          
+                            confirmPasswordField.addEventListener('input', validatePasswords);
+                          </script>
+                          
+                        
+                    </div>
+                    </div>
+                        <div class="input-box">
+                            <input  type="submit" class="submit" value="Запазване">
+                        </div>
+                        <div class="two-col">
+                            <div class="one">
+                                <input type="checkbox" id="register-check">
+                                <label for="register-check">Запази профила</label>
+                            </div>
+
+                            <div class="two">
+                                <label><a href="#">Поверителност и защита</a></label>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            </form>
+
+            <script>
+                function showLogin() {
+                    let loginForm = document.getElementById("login");
+                    let registerForm = document.getElementById("register");
+            
+                    registerForm.style.opacity = "0";
+                    setTimeout(() => {
+                        registerForm.style.display = "none";
+                        loginForm.style.display = "block";
+                        setTimeout(() => loginForm.style.opacity = "1", 100);
+                    }, 300);
+                }
+            
+                function showRegister() {
+                    let loginForm = document.getElementById("login");
+                    let registerForm = document.getElementById("register");
+            
+                    loginForm.style.opacity = "0";
+                    setTimeout(() => {
+                        loginForm.style.display = "none";
+                        registerForm.style.display = "block";
+                        setTimeout(() => registerForm.style.opacity = "1", 100);
+                    }, 300);
+                }
+            
+                window.onload = function() {
+                    document.getElementById("login").style.display = "block";
+                    document.getElementById("register").style.display = "none";
+                };
+
+                function previewImage(event) {
+                    const reader = new FileReader();
+                    reader.onload = function () {
+                        const img = document.getElementById('profilePreview');
+                        img.src = reader.result;
+                    }
+                    reader.readAsDataURL(event.target.files[0]);
+                }
+
+
+                function togglePages() {
+            document.getElementById("firstPage").style.display = "none";
+            document.getElementById("account").style.display = "block";
+            }
+
+            function showMenu() {
+                const navLinks = document.getElementById('navLinks');
+                navLinks.classList.toggle('show');
+            }
+            </script>
+
+
+        </section>
+
+
+      <section class="course">
+            <h1>Работно време</h1>
+            <p>Можете да се свържете с нас при възникнали въпроси и проблеми.</p>
+            <br>
+            <a href="{{ url_for('contact') }}" class="hero-u">Контакти</a>
+            
+            <div class="row">
+
+
+                <div class="course-col">
+                    <h3> Делнични дни</h3>
+                    <p>Работно време за обратна връзка: <br>
+                        8:00 до 20:00 часа
+                       </p>
+                </div>
+
+                <div class="course-col">
+                    <h3> Почивни дни</h3>
+                    <p> Работно време за обратна връзка: 
+                        <br>
+                        от 10:00 до 14:00 часа</p>
+                </div>
+
+                <div class="course-col">
+                    <h3>Национални празници </h3>
+                    <p>Няма да успеете да се свържете с нас по телефона, затова може да оставите съобщение и ще получите отговор в най-скоро време.</p>
+                </div>
+            </div>
+
+        </section>
+        <br>
+        <br>
+
+
+        <section class="campus">
+
+            <h1>Нашите офиси</h1>
+            <p>Можете да ни намерите на тези адреси.Заповядайте!</p>
+
+            <div class="row">
+
+                <div class="campus-col">
+                    <img src="{{ url_for('static', filename='images/sgrada1.jpg') }}">
+                    <div class="layer">
+                        <h3>София</h3>
+                        <p>бул.Стефан Стамболов 10</p>
+                    </div>
+                </div>
+                <div class="campus-col">
+                    <img src="{{ url_for('static', filename='images/sgrada2.jpg') }}">
+                    <div class="layer">
+                        <h3>Пловдив</h3>
+                        <p>бул.Княз Борис 3</p>
+                    </div>
+                </div>
+                <div class="campus-col">
+                    <img src="{{ url_for('static', filename='images/sgrada3.jpg') }}">
+                    <div class="layer">
+                        <h3>Варна</h3>
+                        <p>бул.Владислав Варненчик 15</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="testmonials">
+            <br>
+
+            <h1>Мнения на нашите посетители </h1>
+            <p>Чрез анкети, запитвания и много отзиви можем да ви представим някои на тях.Имаме <br>
+                висока използваемост като подължаваме да събираме все още мнения и<br>
+                от десеторната скала се нареждаме с оценка от (9.3). Страшно благодарни сме и чакаме отново посещението ви.</p>
+
+
+             <div class="row">
+                <div class="testmonials-col">
+                    <img src="{{ url_for('static', filename='images/462578454_1102243918060849_1555337413959683172_n.jpg') }}" >
+                    <div>
+                        <p>
+                            Секцията за купувач и продавач е изключително полезна. Тя позволява ясно разграничение между двете целеви групи, <br>
+                            като всяка от тях получава персонализирана информация и функционалности. <br>
+                            Това прави сайта лесен за използване и подобрява цялостното изживяване на потребителите.
+                            
+
+                        </p>
+                        <h3>Йоанна Янева</h3>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                </div>
+                <div class="testmonials-col">
+                    <img src="{{ url_for('static', filename='images/462584751_1106464731012597_5581378823691262624_n.jpg') }}" >
+                    <div>
+                        <p>
+                            Галерията със снимки на различни видове домашни любимци е прекрасно допълнение.<br>
+                             Тя дава визуална представа за наличните животни и създава емоционална връзка с посетителите. Би било полезно, <br>
+                             ако към снимките има и кратко описание за всяко животно, като порода, възраст и специфични нужди
+                         
+
+                        </p>
+                        <h3>Маргаритa Стоянова</h3>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa-brands fa-star-half-o"></i>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+
+                <div class="testmonials-col">
+                    <img src="{{ url_for('static', filename='images/462648479_8989334801117963_2354499554490218503_n.jpg') }}" >
+                    <div>
+                    <p>
+                        Контактната форма е много удобна и дава възможност на посетителите да задават въпроси директно. <br>
+                        Важно е тя да бъде лесна за попълване и да включва задължителни полета за име, имейл и съобщение,<br>
+                         за да се избегне спам и неясни запитвания.
+                        
+                    </p>
+                    <h3>Теодор Борисов </h3>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa-brands fa-star-o"></i>
+                    </div>
+                </div>
+
+                <div class="testmonials-col">
+                <img src="{{ url_for('static', filename='images/462548975_1224516048626053_6438318431512068381_n.jpg') }}" >
+                <div>
+                    <p>
+                        Сайтът изглежда добре организиран, а наличието на филтри е голямо предимство.<br>
+                        Те помагат на потребителите бързо да намерят подходящия домашен любимец според техните предпочитания,<br>
+                        като порода, възраст, размер или местоположение.        
+                    </p>
+                    <h3>Мартин Иванов</h3>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+
+                </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="call">
+            <h1>Как да се свържете с нас?</h1>
+            <p>Малко по-нагоре е описано кога работи администрацията 
+                ,към която може да задавате вдякакви въпроси!</p>
+            <a href="{{ url_for('contact') }}" class="hero">Свържете се с нас</a>
+
+        </section>
+
+        <section class="footer" >
+            {% include 'Footer.html' %}
+        </section>
+        <script src="{{ url_for('static', filename='js/Fun.js') }}"></script>
+    </body>
+</html>

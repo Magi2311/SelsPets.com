@@ -1,0 +1,477 @@
+<html>
+    <head>
+        {% include 'header.html' %}
+    </head>
+
+    <body style="background-color: antiquewhite;" id="blurred">
+        <section class="sub-header" style="height:auto;">           
+                {% include 'Menu_seller.html' %}
+                <h1>Моя профил</h1>
+            </section>
+        </section>
+        <form action="/edit-profile" method="POST" enctype="multipart/form-data" id="profileForm">
+        <section class="profile-section">
+            <div class="Information">
+                    <div class="picProfile">
+                        <label for="profileImage">
+                            <img
+                            id="profilePreview"
+                            src="{{ url_for('profile_picture', user_id=session['user_id']) }}"
+                            alt="Профилна снимка">
+                            <div class="upload-overlay">
+                            <i class="bx bx-camera"></i>
+                            </div>
+                        </label>   
+                        <!--Полето за качване на снимка-->
+                        <input type="file" id="profileImage" name ="profile_picture" style="display: none;" accept="image/*"> 
+                    </div>
+                    <p style="margin-left: -10px;"> *Натиснете сниката за да я промените</p>
+                    <div class="two-form">
+                        <div class="input-box">
+                            <input  type="text" class="input-field edit-text" placeholder="Име" name="first_name" pattern="^[А-Яа-яA-Za-z\s\-]+$" value=" {{ profile.first_name }}">
+                            <i class="bx bx-user"></i>
+                        </div>
+                        <div class="input-box">
+                            <input  type="text" class="input-field edit-text" placeholder="Фамилия" name="last_name" pattern="^[А-Яа-яA-Za-z\s\-]+$" value="{{ profile.last_name }}">
+                            <i class="bx bx-user"></i>
+                        </div>
+                    </div>
+                    </div>
+
+                <div class="personalInf">
+                    <div class="input-box">
+                        <input  type="email" class="input-field edit-text" placeholder="Имейл" name="email" value="{{ user.email }}">
+                        <i class="bx bx-envelope"></i>
+                    </div>
+
+                    <div class="input-box">
+                        <input  type="text" class="input-field edit-text" placeholder="Потребителско име" name="username" value="{{ profile.username }}">
+                        <i class="bx bx-envelope"></i>
+                    </div>
+
+                    <div class="input-box">
+                        <input
+                            id="phoneField"
+                            type="tel"
+                            class="input-field edit-text"
+                            placeholder="Телефонен номер"
+                            pattern="^\+359[0-9]{9}$"
+                            oninput="limitDigits(event)"
+                            title="Моля, въведете телефон в този формат: +359XXXXXXXXX"
+                            name="phone"
+                            value="{{ '+359' + profile.phone[1:] if profile.phone.startswith('0') else profile.phone }}"
+                            >
+                        <i class="bx bxs-phone"></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="date" id="birth_date" class="input-field edit-text" name="birth_date" value="{{ profile.birth_date }}">
+                        <i class="bx bxs-face"></i>
+                    </div>         
+                </div>
+                <div class="ContactInf">
+                    <div class="input-box">
+                        <input id="city" type="text" class="input-field edit-text" placeholder="Град" maxlength="20" name="city" value="{{ profile.city }}">
+                        <i class="bx bx-navigation"></i>
+                    </div>
+                    <div class="input-box">
+                        <input id="postalCode" type="text" class="input-field edit-text" placeholder="Пощ.код" maxlength="4" name="postal_code" value="{{ profile.postal_code }}">
+                        <i class="bx bx-navigation"></i>
+                    </div>
+                    <div class="input-box">
+                    <input name="new_password" type="password" class="input-field edit-text" placeholder="Нова парола">
+                    <i class="bx bx-lock-alt"></i>
+                    <span id="togglePassword" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">👁️</span>
+                    </div>
+                    <div class="input-box">
+                    <input name="confirm_password" type="password" class="input-field edit-text" placeholder="Потвърди паролата">
+                    <i class="bx bx-lock-alt"></i>
+                    <span id="togglePassword" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">👁️</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="ButSave">
+                <div class="input-box">
+                    <button type="button" id="editProfileBtn" class="submit">Редактирай</button>
+                </div>
+                <div class="input-box">
+                    <button type="submit" id="saveProfileBtn" class="submit hidden">Запази</button>
+                </div>
+            </section>
+        </section>
+        </form>
+        <section class="petsInf">
+
+        <h2 style="
+        text-align: center;
+        font-size: 50px;
+        margin-top: 20px;margin-bottom: 20px;">
+        Моите обяви
+
+        <a href="#" class="hero" id="openModalBtn" onclick="openModal()"style=
+        "display: flex;
+        justify-self: self-end;
+        background-color: #005f00d1; text-decoration: none; 
+        padding: 10px 20px; color: white; border-radius: 8px;">
+        Добави обява
+        </a>
+<!-- Модал -->
+    <form action="{{ url_for('add_pet') }}" method="POST" enctype="multipart/form-data" id="petForm">
+        <div class="modal" id="myModal">
+            <div class="form-container">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2 style="border-bottom: 1px solid black; font-size: 32px; text-align: center;">Добави обява</h2>
+                
+                <div class="input-box">
+                    <h6>Вид животно:</h6>
+                    <label><input type="radio" name="type_name" value="Куче"> Куче</label>
+                    <label><input type="radio" name="type_name" value="Котка"> Котка</label>
+                    <label><input type="radio" name="type_name" value="Птица"> Птица</label>
+                    <label><input type="radio" name="type_name" value="Хамстер"> Хамстер</label>
+                    <label><input type="radio" name="type_name" value="Друго"> Друго</label>
+                </div>
+                
+                <div class="input-box">
+                    <h6>Порода:</h6>
+                    <input type="text"id="breed-name" name="breed_name" class="input-field" pattern="^[А-Яа-яA-Za-z\s\-]+$" placeholder="-"required>
+                </div>
+                <div class="input-box">
+                    <h6>Възраст:</h6>
+                    <label><input type="checkbox" id="underOneYear" onclick="toggleUnderOneYear()"> По-малко от година</label>
+                    <input type="number" id="ageInput" name="age" class="input-field" placeholder="Възраст в години" min="0" oninput="validateNumberInput(this)" required>
+                </div>
+
+                <div class="input-box">
+                    <h6>Пол:</h6>
+                    <select name="gender">
+                        <option value="мъжки">мъжки</option>
+                        <option value="женски">женски</option>
+                    </select>
+                </div>
+
+                <div class="input-box">
+                    <h6>Снимка:</h6>
+                    <input type="file" id="petImage" class="input-field" accept="image/*" name="pet_picture"  required>
+                </div>
+
+                <div class="input-box">
+                    <h6>Ваксинация:</h6>
+                    <select name="vaccinated">
+                        <option value="да"> Да</option>
+                        <option value="не"> Не</option>
+                    </select>
+                </div>
+
+                <div class="input-box">
+                    <h6>Цена:</h6>
+                    <input type="number" name="price" id="priceInput" class="input-field" placeholder="Цена в лв." min="0" required>
+                </div>
+
+                <div class="input-box">
+                    <h6>Описание:</h6>
+                    <textarea id="description" name="description" class="input-field" rows="5" style="resize: vertical;" required></textarea>
+                </div>
+
+                <button class="hero" type="button" onclick="openConfirmModal()">Публикувай</button>
+            </div>
+        </div>
+            <div id="confirmModal" class="modal">
+                <div class="form-container">
+                    <h3>Потвърди публикуване</h3>
+                    <p>Сигурни ли сте, че искате да публикувате обявата?</p>
+                    <button class="confirm-btn" onclick="submitForm()">Да, публикувай</button>
+                    <button class="cancel-btn" onclick="closeConfirmModal()">Не, анулирай</button>
+                </div>
+            </div>
+            
+    </form>
+    <div class="ads-list" id="ads-container">
+    {% for ad in ads %}
+    <form id="petForm-{{ ad.pet_id }}"class="ad-item-form">
+        <div class="ad-item">
+            <h3><span class="text" data-field="title">Обява номер: {{ loop.index }} 
+                <br>
+                (ID: {{ ad.pet_id }})</span></h3>
+            <div class="ad-item1">
+                <div class="ad-image">
+                    <img src="{{ url_for('pet_picture', pet_id=ad.pet_id) }}" alt="Животно" style="margin: 0%; padding: 0%; object-fit: cover;" />
+                </div>
+                    <div style="text-align: left;">
+                        <p>Качена на: <span class="ad-number not-editable" data-field="upload_date">{{ ad.upload_date}}</span></p>
+                        <p>Вид: <span class="edit-text" data-field="type_name">{{ ad.type_name }}</span></p>
+                        <p>Порода: <span class="edit-text" data-field="breed_name">{{ ad.breed_name if ad.breed_name else 'Няма' }}</span></p>
+                        <p>Възраст: <span class="edit-text" data-field="age">{% if ad.age == 0 %}По-малко от година{% else %}{{ ad.age }} години{% endif %}</span></p>
+                        <p>Цена: <span class="edit-text" data-field="price">{{ ad.price }} лв.</span></p>
+                        <p>Локация: <span class="edit-text" data-field="city">{{ profile.city }}</span></p>
+                        <p>Пол: <span class="edit-text" data-field="gender">{{ ad.gender }}</span></p>
+                        <p>Ваксинация: <span class="edit-text" data-field="vaccinated">{{ ad.vaccinated }}</span></p>
+                        <p>Описание: <span class="edit-text" data-field="description">{{ ad.description }}</span></p>
+                    </div>
+                </div>
+            <div class="ad-actions">
+                <button type="button" class="edit-ad" onclick="editAd(this)" data-id="{{ ad.pet_id }}">Редактирай</button>
+                <button type="button" class="save-ad hidden" onclick="saveAd(this)" data-id="{{ ad.pet_id }}">Запази</button>
+                <button type="button" class="delete-ad" onclick="deleteAd(this)" data-id="{{ ad.pet_id }}" style="background-color: reds;">Изтрий</button>
+            </div>
+        </div>
+    </form>
+    {% endfor %}
+    {% if ads|length == 0 %}
+        <p>Няма намерени обяви.</p>
+    {% endif %}
+    </div>
+    </section>
+        <section class="footer" >
+            {% include 'Footer.html' %}
+        </section>
+
+        <style>
+            .hidden { display: none; }
+        </style>
+    <script src="{{ url_for('static', filename='js/Fun.js') }}"></script>
+    <script>
+        
+        function openModal() {
+                document.getElementById('myModal').style.display = "block";
+                document.getElementById("mainContent").classList.add("blurred");
+            }
+            function closeModal() {
+                document.getElementById('myModal').style.display = "none";
+                document.getElementById("mainContent").classList.remove("blurred");
+            }
+            function updateType() {
+                document.getElementById('typeInput').value = document.querySelector('input[name="Type"]:checked').value;
+            }
+            function toggleUnderOneYear() {
+                const ageInput = document.getElementById('ageInput');
+                ageInput.disabled = document.getElementById('underOneYear').checked;
+                ageInput.value = ageInput.disabled ? 0 : '';
+            }
+            function validateNumberInput(input) {
+                input.value = input.value.replace(/[^0-9]/g, '');
+            }
+            function clearForm() {
+                document.querySelectorAll(".input-field").forEach(input => input.value = "");
+                document.querySelectorAll("input[type='radio'], input[type='checkbox']").forEach(input => input.checked = false);
+            }
+            
+            // Отваряне и затваряне на потвърдителния модал
+            function openConfirmModal() {
+                document.getElementById('confirmModal').style.display = "block";
+            }
+
+            function closeConfirmModal() {
+                document.getElementById('confirmModal').style.display = "none";
+            }
+
+            function submitForm() {
+                closeConfirmModal();
+                alert("Обявата беше успешно публикувана! 🎉");
+                document.getElementById("petForm").submit();
+            }
+
+            function validateEditForm(data) {
+                // ВИД
+                if (!data.type_name || !['Куче', 'Котка', 'Птица', 'Хамстер', 'Друго'].includes(data.type_name)) {
+                    alert('Моля, изберете валиден вид животно');
+                    return false;
+                }
+
+                // ПОРОДА
+                if (!data.breed_name || data.breed_name.trim() === '') {
+                    alert('Моля, въведете порода');
+                    return false;
+                }
+
+                // ГОДИНИ
+                const age = parseInt(data.age);
+                if (isNaN(age) || age < 0) {
+                    alert('Моля, въведете валидна възраст');
+                    return false;
+                }
+
+                // ЦЕНА
+                const price = parseFloat(data.price);
+                if (isNaN(price) || price < 0) {
+                    alert('Моля, въведете валидна цена');
+                    return false;
+                }
+
+                // ПОЛ
+                if (!data.gender || !['мъжки', 'женски'].includes(data.gender)) {
+                    alert('Моля, изберете валиден пол');
+                    return false;
+                }
+
+                // ВАКСИНАЦИЯ
+                if (!data.vaccinated || !['да', 'не'].includes(data.vaccinated)) {
+                    alert('Моля, изберете валиден статус на ваксинация');
+                    return false;
+                }
+
+                // ОПИСАНИЕ
+                if (!data.description || data.description.trim() === '') {
+                    alert('Моля, въведете описание');
+                    return false;
+                }
+
+                return true;
+            }
+
+            // РЕДАКТИРАНЕ НА ДАННИТЕ НА ОБЯВИТЕ 
+            function editAd(button) {
+                const adItem = button.closest('.ad-item');
+                const spans = adItem.querySelectorAll('.edit-text');
+                
+                spans.forEach(span => {
+                    const value = span.textContent.trim();
+                    const field = span.getAttribute('data-field');
+                    let input;
+
+                    if (field === 'type_name') {
+                        input = document.createElement('select');
+                        ['Куче', 'Котка', 'Птица', 'Хамстер', 'Друго'].forEach(type => {
+                            const option = document.createElement('option');
+                            option.value = type;
+                            option.textContent = type;
+                            if (type === value) option.selected = true;
+                            input.appendChild(option);
+                        });
+                    } else if (field === 'gender') {
+                        input = document.createElement('select');
+                        ['мъжки', 'женски'].forEach(gender => {
+                            const option = document.createElement('option');
+                            option.value = gender;
+                            option.textContent = gender;
+                            if (gender === value) option.selected = true;
+                            input.appendChild(option);
+                        });
+                    } else if (field === 'vaccinated') {
+                        input = document.createElement('select');
+                        ['да', 'не'].forEach(status => {
+                            const option = document.createElement('option');
+                            option.value = status;
+                            option.textContent = status;
+                            if (status === value) option.selected = true;
+                            input.appendChild(option);
+                        });
+                    } else if (field === 'age') {
+                        input = document.createElement('input');
+                        input.type = 'number';
+                        input.min = '0';
+                        input.value = value.replace(/[^0-9]/g, '');
+                    } else if (field === 'price') {
+                        input = document.createElement('input');
+                        input.type = 'number';
+                        input.min = '0';
+                        input.value = value.replace(/[^0-9.]/g, '');
+                    } else {
+                        input = document.createElement('input');
+                        input.type = 'text';
+                        input.value = value;
+                    }
+
+                    input.className = 'edit-input';
+                    input.setAttribute('data-field', field);
+                    span.replaceWith(input);
+                });
+
+                button.classList.add('hidden');
+                adItem.querySelector('.save-ad').classList.remove('hidden');
+            }
+
+            // ЗАПАЗВАНЕ НА НОВИТЕ ДАННИ
+            function saveAd(button) {
+                const adItem = button.closest('.ad-item');
+                const petId = button.getAttribute('data-id');
+                const inputs = adItem.querySelectorAll('.edit-input');
+                
+                const data = {};
+                inputs.forEach(input => {
+                    const field = input.getAttribute('data-field');
+                    data[field] = input.value.trim();
+                });
+
+                // Validate the form data
+                if (!validateEditForm(data)) {
+                    return;
+                }
+
+                fetch(`/pets/update/${petId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message) {
+                        alert(data.message);
+                        location.reload();
+                    } else {
+                        alert(data.error || 'Грешка при запазване');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Грешка при запазване');
+                });
+            }
+
+            // ИЗТРИВАНЕ НА ОБЯВА
+            function deleteAd(button) {
+                if (!confirm('Сигурни ли сте, че искате да изтриете тази обява?')) {
+                    return;
+                }
+
+                const petId = button.getAttribute('data-id');
+                
+                fetch(`/ads/delete/${petId}`, {
+                    method: 'DELETE'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message) {
+                        alert(data.message);
+                        button.closest('.ad-item-form').remove();
+                        location.reload();
+                    } else {
+                        alert(data.error || 'Грешка при изтриване');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Грешка при изтриване');
+                });
+            }
+            window.onclick = function(event) {
+                const modal = document.getElementById('myModal');
+                const confirmModal = document.getElementById('confirmModal');
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+                if (event.target === confirmModal) {
+                    confirmModal.style.display = "none";
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+                const editBtn = document.getElementById('editProfileBtn');
+                const saveBtn = document.getElementById('saveProfileBtn');
+                const inputs = document.querySelectorAll('.profile-section .input-field');
+
+                // Disable all inputs by default
+                inputs.forEach(input => input.disabled = true);
+
+                editBtn.addEventListener('click', function() {
+                    inputs.forEach(input => input.disabled = false);
+                    saveBtn.classList.remove('hidden');
+                    editBtn.classList.add('hidden');
+                });
+            });
+        
+        
+    </script>
+    </body>
+</html>

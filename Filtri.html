@@ -1,0 +1,181 @@
+
+            <section class="Filtri">
+                <h2>Филтри за търсене</h2>
+                <form id="filter-form">
+                    <div class="filter-group">
+                        <label>Категория:</label>
+                        <div>
+                            <input type="checkbox" id="dogs" name="type_name" value="Куче"> Кучета
+                        </div>
+                        <div>
+                            <input type="checkbox" id="cats" name="type_name" value="Котка"> Котки
+                        </div>
+                        <div>
+                            <input type="checkbox" id="birds" name="type_name" value="Птица"> Птици
+                        </div>
+                        <div>
+                            <input type="checkbox" id="hamsters" name="type_name" value="Хамстер"> Хамстери
+                        </div>
+                        <div>
+                            <input type="checkbox" id="other" name="type_name" value="Друго"> Други
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="region">Град:</label>
+                        <input type="text" id="city" name="city" placeholder="Въведете област">
+                    </div>
+                
+                    <div class="filter-group">
+                        <label>Възраст:</label>
+                        <div>
+                            <input type="checkbox" id="LessthanYear" name="age" value="0"> По-малко от година
+                        </div>
+                        <div class="age">
+                            <input type="number" id="min-age" min="1" max="40" value="1"> - 
+                            <input type="number" id="max-age" min="1" max="40" value="40">
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="vaccinated">Ваксинация:</label>
+                        <input type="checkbox" id="vaccinated" name="vaccinated"> С ваксинация
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="gender">Пол:</label>
+                        <select id="gender" name="gender">
+                            <option value="all">Всички</option>
+                            <option value="мъжки">Мъжки</option>
+                            <option value="женски">Женски</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label>Цена (лв):</label>
+                        <input type="number" id="min-price" placeholder="Минимална" min="0">
+                        <input type="number" id="max-price" placeholder="Максимална" min="0">
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="breed">Порода:</label>
+                        <input type="text" id="breed" placeholder="Въведете порода">
+                    </div>
+
+                    <div class="filter-group buttons">
+                        <button type="submit" class="filter-btn">Приложи</button>
+                        <button type="button" id="clear-filters">Изчисти филтрите</button>
+                    </div>
+                </form>
+            </section>
+            <section class="pets-display">
+                <div class="ads-list">
+                    {% if ads and ads|length > 0 %}
+                        {% for ad in ads %}
+                            <div class="ad-card" data-type="{{ ad.type_name }}" data-city="{{ ad.city }}" data-age="{{ ad.age }}" data-price="{{ ad.price }}" data-breed="{{ ad.breed_name }}" data-gender="{{ ad.gender }}" data-vaccinated="{{ 'true' if ad.vaccinated else 'false' }}">
+                                <div class="pet-image-container">
+                                    <img src="{{ url_for('pet_picture', pet_id=ad.pet_id) }}" alt="Снимка на животното" onerror="this.src='/static/images/nophotopet.jpg'">
+                                </div>
+                                <div class="pet-main-info">
+                                    <h3>{{ ad.type_name }}</h3>
+                                    <p class="breed"><strong>Порода: </strong>{{ ad.breed_name }}</p>
+                                    <p class="price"><strong>Цена: </strong>{{ ad.price }} лв.</p>
+                                    <p class="date"><strong>Качена на: </strong>{{ ad.upload_date }}</p>
+                                </div>
+                                <div class="pet-actions">
+                                    <button class="btn-details" onclick="toggleDetails('info-{{ ad.pet_id }}')">Виж повече</button>
+                                    <button class="btn-contact" onclick="toggleDetails('contact-{{ ad.pet_id }}')" >Контакти</button>
+                                </div>
+
+                                <div id="info-{{ ad.pet_id }}" class="details-section hidden">
+                                    <div class="details-content">
+                                        <p><strong>Възраст: </strong>{{ ad.age }}</p>
+                                        <p><strong>Пол: </strong>{{ ad.gender }}</p>
+                                        <p><strong>Ваксинация: </strong>{{ ad.vaccinated }}</p>
+                                        <p><strong>Описание: </strong>{{ ad.description }}</p>
+                                    </div>
+                                </div>
+
+                                <div id="contact-{{ ad.pet_id }}" class="details-section hidden">
+                                    <div class="contact-content">
+                                        <img src="{{ url_for('profile_picture', user_id=ad.user_id) }}" alt="Потребителска снимка" class="profile-picture" onerror="this.src='/static/images/images.png'">
+                                        <p><strong>Имейл: </strong>{{ ad.email }}</p>
+                                        <p><strong>Телефон: </strong>{{ ad.phone }}</p>
+                                        <p><strong>Град: </strong>{{ ad.city }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <p>Няма налични обяви.</p>
+                    {% endif %}
+                </div>
+            </section>
+                <script>
+                function toggleDetails(id) {
+                    // Скриване на всички отворени секции
+                    document.querySelectorAll('.details-section').forEach(section => {
+                        if (section.id !== id) {
+                            section.classList.add('hidden');
+                        }
+                    });
+
+                    // Превключване на избраната
+                    const element = document.getElementById(id);
+                    if (element) {
+                        element.classList.toggle('hidden');
+                    }
+                }
+
+                // Това трябва да е ОТДЕЛНО от toggleDetails!
+                document.addEventListener('DOMContentLoaded', function () {
+                    const filterForm = document.getElementById('filter-form');
+                    const clearFiltersBtn = document.getElementById('clear-filters');
+                    const allAds = document.querySelectorAll('.ad-card');
+
+                    filterForm.addEventListener('submit', function (e) {
+                        e.preventDefault();
+
+                        const selectedTypes = Array.from(document.querySelectorAll('input[name="type_name"]:checked')).map(cb => cb.value);
+                        const city = document.getElementById('city').value.toLowerCase();
+                        const minAge = parseInt(document.getElementById('min-age').value) || 0;
+                        const maxAge = parseInt(document.getElementById('max-age').value) || Infinity;
+                        const lessThanYear = document.getElementById('LessthanYear').checked;
+                        const vaccinated = document.getElementById('vaccinated').checked;
+                        const gender = document.getElementById('gender').value;
+                        const minPrice = parseInt(document.getElementById('min-price').value) || 0;
+                        const maxPrice = parseInt(document.getElementById('max-price').value) || Infinity;
+                        const breed = document.getElementById('breed').value.toLowerCase();
+
+                        allAds.forEach(ad => {
+                            const adType = ad.dataset.type;
+                            const adCity = ad.dataset.city.toLowerCase();
+                            const adAge = parseInt(ad.dataset.age);
+                            const adPrice = parseInt(ad.dataset.price);
+                            const adBreed = ad.dataset.breed.toLowerCase();
+                            const adGender = ad.dataset.gender;
+                            const adVaccinated = ad.dataset.vaccinated;
+
+                            let show = true;
+
+                            if (selectedTypes.length > 0 && !selectedTypes.includes(adType)) show = false;
+                            if (city && !adCity.includes(city)) show = false;
+                            if (lessThanYear && adAge >= 1) show = false;
+                            if (!lessThanYear && (adAge < minAge || adAge > maxAge)) show = false;
+                            if (vaccinated && adVaccinated !== 'true') show = false;
+                            if (gender !== 'all' && adGender !== gender) show = false;
+                            if (adPrice < minPrice || adPrice > maxPrice) show = false;
+                            if (breed && !adBreed.includes(breed)) show = false;
+
+                            ad.style.display = show ? 'block' : 'none';
+                        });
+                    });
+
+                    clearFiltersBtn.addEventListener('click', function () {
+                        filterForm.reset();
+                        allAds.forEach(ad => ad.style.display = 'block');
+                    });
+                });
+
+                console.log('Fun.js loaded');
+            </script>
